@@ -1,9 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.digidot.ishansupportsystem.activity.ViewTicketActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutTicketDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dim_10dp"
+                android:layout_alignParentTop="true">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutTicketId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/textviewTicketId"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:text="@string/ticketId"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/textviewTicketIdValue"
+                        style="@style/text_regular_black"
+                        android:text="@string/ticketId"
+                        android:layout_weight="2"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutTicketId">
+
+                    <TextView
+                        android:id="@+id/textviewDate"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_date"/>
+
+                    <TextView
+                        android:id="@+id/textviewDateValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_date"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutFault"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutDate">
+
+                    <TextView
+                        android:id="@+id/textViewFault"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/fault"/>
+
+                    <TextView
+                        android:id="@+id/textViewFaultValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/fault"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutFault">
+
+                    <TextView
+                        android:id="@+id/textviewDescription"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_description"/>
+
+                    <TextView
+                        android:id="@+id/textviewDescriptionValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_description"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textviewStatusDetails"
+                style="@style/text_regular_black"
+                android:padding="5dp"
+                android:layout_marginLeft="@dimen/dim_20dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ticket_status_details"
+                android:layout_below="@+id/relativeLayoutTicketDetails"/>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutStatusDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dim_40dp"
+                android:layout_below="@+id/textviewStatusDetails">
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutStatusDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/textviewStatusDate"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:text="@string/ticket_date"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:id="@+id/textviewStatusDateValue"
+                        style="@style/text_regular_black"
+                        android:text="@string/ticket_date"
+                        android:layout_weight="2"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutDependency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutDependency">
+
+                    <TextView
+                        android:id="@+id/textviewDependency"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_dependency"/>
+
+                    <TextView
+                        android:id="@+id/textviewDependencyValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_dependency"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutDependencyCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutDependency">
+
+                    <TextView
+                        android:id="@+id/textViewDependencyCode"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_dependency_code"/>
+
+                    <TextView
+                        android:id="@+id/textViewDependencyCodeValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_dependency_code"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutResolutionCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutDependencyCode">
+
+                    <TextView
+                        android:id="@+id/textviewResolutionCode"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_resolution_code"/>
+
+                    <TextView
+                        android:id="@+id/textviewResolutionCodeValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_resolution_code"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutBroadCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_below="@id/linearLayoutResolutionCode">
+
+                    <TextView
+                        android:id="@+id/textviewBroadCategory"
+                        style="@style/text_regular_black"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:text="@string/ticket_broad_category"/>
+
+                    <TextView
+                        android:id="@+id/textviewBroadCategoryValue"
+                        style="@style/text_regular_black"
+                        android:layout_weight="2"
+                        android:text="@string/ticket_broad_category"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

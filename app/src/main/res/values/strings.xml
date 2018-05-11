@@ -19,6 +19,17 @@
     <string name="error_username_required">Username required \n</string>
     <string name="error_password_required">Password required \n</string>
 
+    <!--View Ticket-->
+    <string name="ticket_description">Description : </string>
+    <string name="fault">Fault : </string>
+    <string name="ticket_date">Date : </string>
+    <string name="ticketId">Ticket Id : </string>
+    <string name="ticket_status_details">Status Details : </string>
+    <string name="ticket_dependency">Dependency : </string>
+    <string name="ticket_dependency_code">Dependency Code: </string>
+    <string name="ticket_resolution_code">Resolution Code : </string>
+    <string name="ticket_broad_category">Broad Category : </string>
+
     <string name="btn_submit">Submit</string>
     <string name="btn_generate_otp">Generate OTP</string>
     <string name="login_des">Login with your registered Mobile No.\nand One Time Password you will receive</string>
