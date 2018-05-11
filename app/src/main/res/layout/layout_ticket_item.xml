@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dim_2dp"
+    style="@style/edittext_theme"
+    android:padding="@dimen/dim_5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_10dp">
+
+        <ImageView
+            android:id="@+id/icon_ticket"
+            android:layout_width="@dimen/dim_50dp"
+            android:layout_height="@dimen/dim_50dp"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:id="@+id/linear_layout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@id/icon_ticket"
+            android:padding="@dimen/dim_5dp">
+
+            <TextView
+                android:id="@+id/textViewTicketId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_regular_white"
+                android:textStyle="bold"
+                android:text="Alert"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="@dimen/dim_10dp"/>
+
+            <TextView
+                android:id="@+id/textViewFault"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_regular_white"
+                android:textStyle="bold"
+                android:text="Alert"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="@dimen/dim_10dp"/>
+
+            <TextView
+                android:id="@+id/textViewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/text_regular_black"
+                android:text="22-03-2018"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/imageUpdateTicket"
+                android:layout_width="@dimen/dim_50dp"
+                android:layout_height="@dimen/dim_50dp"
+                android:padding="@dimen/dim_5dp"/>
+
+            <ImageView
+                android:id="@+id/imageCancelTicket"
+                android:layout_width="@dimen/dim_50dp"
+                android:layout_height="@dimen/dim_50dp"
+                android:padding="@dimen/dim_5dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

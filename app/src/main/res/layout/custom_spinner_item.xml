@@ -1,0 +1,8 @@
+<TextView android:id="@+id/tvTitle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Title"
+    style="@style/text_regular_black"
+    android:padding="@dimen/dim_5dp"
+    android:layout_margin="@dimen/dim_5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

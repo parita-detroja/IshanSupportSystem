@@ -1,0 +1,106 @@
+<resources>
+    <string name="app_name">Ishan Support System</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="app_title">Event</string>
+    <string name="register_title">Registration</string>
+    <string name="event_title">Live Notifications</string>
+    <string name="live_updates">Live Updates</string>
+    <string name="view_all">View All</string>
+    <string name="btn_datetime">Date Time</string>
+    <string name="btn_category">Category</string>
+
+    <string name="hint_name">Enter name</string>
+    <string name="hint_age">Enter age</string>
+    <string name="hint_phone">Enter phone no.</string>
+    <string name="hint_email">Enter email</string>
+    <string name="hint_message">Enter Message</string>
+
+    <!--Login-->
+    <string name="error_username_required">Username required \n</string>
+    <string name="error_password_required">Password required \n</string>
+
+    <string name="btn_submit">Submit</string>
+    <string name="btn_generate_otp">Generate OTP</string>
+    <string name="login_des">Login with your registered Mobile No.\nand One Time Password you will receive</string>
+    <string name="btn_back_to_login">Back to Login Page</string>
+    <string name="btn_login">Login</string>
+    <string name="register">No account yet? Create one</string>
+    <string name="or">---------------------------------OR---------------------------------</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="drawer_menu_company_details">Company Details</string>
+    <string name="drawer_menu_photo_gallery">Gallery</string>
+    <string name="drawer_menu_contest">Contest</string>
+    <string name="drawer_menu_event_details">Event Details</string>
+    <string name="drawer_menu_contact_us">Contact Us</string>
+    <string name="drawer_menu_home">Home</string>
+    <string name="drawer_menu_notifications">Notifications</string>
+    <string name="drawer_menu_settings">Settings</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+    <!--Contact us-->
+    <string name="feedback">Feedback</string>
+    <string name="complain">Complain</string>
+    <string name="suggestion">Suggestion</string>
+
+    <string-array name="contact_us_arrays">
+        <item>Feedback</item>
+        <item>Complain</item>
+        <item>Suggestion</item>
+    </string-array>
+
+    <!--Contest-->
+    <string name="btn_survey">Survey</string>
+    <string name="btn_quiz">Quiz</string>
+    <string name="btn_lucky_draw">Lucky Draw</string>
+
+    Notificationvent details-->
+    <string name="event_date">Event Date :</string>
+    <string name="event_timings">Timings :</string>
+    <string name="event_date_value">30-Jan-2018 To 04-Feb-2018</string>
+    <string name="event_timings_value">08:30am TO 04:00pm (Cricket) \n4:00pm TO 07:00pm (VolleyBall)</string>
+    <string name="event_schedule">Events Schedule List :</string>
+
+    <!--Venue details-->
+    <string name="venue_address">Address : </string>
+    <string name="venue_event_date">Event Date :</string>
+    <string name="venue_timings">Timings :</string>
+    <string name="venue_address_value">Cricket Ground,IFFCO Township,Kasturi Nager Shertha</string>
+    <string name="venue_event_date_value">30-Jan-2018 To 04-Feb-2018</string>
+    <string name="venue_timings_value">08:30am TO 04:00pm</string>
+    <string name="btn_view_indoor_map">View Indoor Map</string>
+    <string name="btn_get_more_data">Get More Details</string>
+    <string name="btn_cricket_schedule">Cricket Schedule</string>
+    <string name="btn_volleyball_schedule">VolleyBall Schedule</string>
+
+    <!--facebook app id-->
+    <!--<string name="facebook_app_id">535237226856099</string>-->
+    <!--client-->
+    <!-- <string name="facebook_app_id">223160291072947</string>
+    <string name="fb_login_protocol_scheme">fb535237226856099</string>-->
+
+    <string name="facebook_app_id">153437942145361</string>
+    <string name="fb_login_protocol_scheme">fb153437942145361</string>
+
+    <!--Settings-->
+    <string name="activate_notification">Activate Notification :</string>
+    <string name="user_id">User Id : </string>
+    <string name="login_type">Login Type : </string>
+
+    <!--filter-->
+    <string name="datetime">Date And Time : </string>
+    <string name="from_date">From Date :</string>
+    <string name="to_date">To Date :</string>
+    <string name="from_time">From Time :</string>
+    <string name="to_time">To Time :</string>
+
+    <string name="refresh">Refresh</string>
+
+
+    <string name="txt_create_ticket">Create Ticket</string>
+
+
+</resources>
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgViewAppLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dim_100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="24dp"
+                android:src="@mipmap/app_logo"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/edittextUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_regular_black"
+                android:hint="Enter Username"
+                android:background="@drawable/edit_text_line_style"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/imgViewAppLogo"/>
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                style="@style/text_regular_black"
+                android:background="@drawable/edit_text_line_style"
+                android:textColorHint="@color/colorGray"
+                android:hint="Enter OTP"
+                android:layout_below="@+id/edittextUsername"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="@string/btn_login"
+                android:layout_below="@+id/editTextPassword"
+                style="@style/button_theme"/>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

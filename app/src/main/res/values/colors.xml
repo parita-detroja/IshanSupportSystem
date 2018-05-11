@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorParrot">#4CFF00</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorAccent">@android:color/holo_orange_light</color>
+    <color name="colorHintText">#888888</color>
+    <color name="colorGray">@android:color/darker_gray</color>
+    <color name="colorDarkGray">#696969</color>
+    <color name="colorStartRecording">@android:color/holo_red_dark</color>
+    <color name="colorLightGreen">@color/colorGreen</color>
+    <color name="colorGreen">#00b200</color>
+    <color name="colorDarkGreen">#2E8B57</color>
+    <color name="colorRed">@android:color/holo_red_light</color>
+    <color name="colorSky">@android:color/holo_blue_light</color>
+    <color name="colorOffwhite">#fffeee</color>
+    <color name="colorLightGray">#E8E8E8</color>
+</resources>
