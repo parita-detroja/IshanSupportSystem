@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CreateTicketActivity" />
+        <activity android:name=".activity.CreateTicketActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activity.UpdateTicketActivity" />
         <activity android:name=".activity.ViewTicketActivity"></activity>
     </application>

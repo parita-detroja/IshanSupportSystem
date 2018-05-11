@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class CreateTicketActivity extends AppCompatActivity {
     private Spinner mSpinnerFault;
     private Spinner mSpinnerClient;
     private EditText mEditTextDescription;
+    private Button mButtonCreateTicket;
 
     private APIService mApiService;
     private SharedPreferences pref;
@@ -62,6 +64,8 @@ public class CreateTicketActivity extends AppCompatActivity {
     private FaultResponse faultResponse;
 
     private int zonePosition;
+    private int faultPosition;
+    private int officePosition;
 
 
     private String userId = "0";
@@ -82,6 +86,16 @@ public class CreateTicketActivity extends AppCompatActivity {
     private void initView(){
 
         mEditTextDescription = findViewById(R.id.etDescription);
+
+        mButtonCreateTicket = findViewById(R.id.btnCreateTicket);
+
+        mButtonCreateTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createTicket(faultResponse.getTblFault().get(faultPosition).getIntFaultId(),
+                        officeResponse.getTblOffice().get(officePosition).getIntOfficeId());
+            }
+        });
 
         mSpinnerState = findViewById(R.id.spinnerState);
         mSpinnerCity = findViewById(R.id.spinnerCity);
@@ -131,6 +145,30 @@ public class CreateTicketActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 getOffice(zoneResponse.getTblZone().get(zonePosition).getIntZoneId(),clientResponse.getTblClient().get(position).getIntClientId());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mSpinnerOffice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                officePosition = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        mSpinnerFault.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                faultPosition = position;
             }
 
             @Override

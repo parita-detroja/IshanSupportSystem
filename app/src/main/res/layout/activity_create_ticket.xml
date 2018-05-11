@@ -1,100 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.digidot.ishansupportsystem.activity.CreateTicketActivity"
-    android:padding="@dimen/dim_20dp">
+    tools:context="com.digidot.ishansupportsystem.activity.CreateTicketActivity">
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerState"
-        android:layout_height="wrap_content"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black" />
+        android:layout_height="match_parent"
+        android:padding="@dimen/dim_20dp">
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerCity"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black"
-        android:layout_below="@+id/spinnerState"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerState"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black" />
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerZone"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black"
-        android:layout_below="@+id/spinnerCity"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerCity"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black"
+            android:layout_below="@+id/spinnerState"/>
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerClient"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black"
-        android:layout_below="@+id/spinnerZone"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerZone"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black"
+            android:layout_below="@+id/spinnerCity"/>
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerOffice"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black"
-        android:layout_below="@+id/spinnerClient"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerClient"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black"
+            android:layout_below="@+id/spinnerZone"/>
 
-    <Spinner
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:id="@+id/spinnerFault"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        style="@style/text_large_black"
-        android:layout_below="@+id/spinnerOffice"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerOffice"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black"
+            android:layout_below="@+id/spinnerClient"/>
 
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:lines="4"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:hint="Enter description"
-        android:textColor="@color/colorBlack"
-        android:layout_below="@+id/spinnerFault"/>
+        <Spinner
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:id="@+id/spinnerFault"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            style="@style/text_large_black"
+            android:layout_below="@+id/spinnerOffice"/>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:paddingTop="@dimen/dim_5dp"
-        android:paddingBottom="@dimen/dim_5dp"
-        android:text="@string/txt_create_ticket"
-        android:layout_below="@+id/etDescription"
-        style="@style/button_theme"/>
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:hint="Enter description"
+            android:textColor="@color/colorBlack"
+            android:layout_below="@+id/spinnerFault"/>
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnCreateTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:text="@string/txt_create_ticket"
+            android:layout_below="@+id/etDescription"
+            style="@style/button_theme"/>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -16,7 +16,8 @@
             android:id="@+id/icon_ticket"
             android:layout_width="@dimen/dim_50dp"
             android:layout_height="@dimen/dim_50dp"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:src="@drawable/ticket"/>
 
         <LinearLayout
             android:id="@+id/linear_layout_text"
@@ -66,13 +67,15 @@
                 android:id="@+id/imageUpdateTicket"
                 android:layout_width="@dimen/dim_50dp"
                 android:layout_height="@dimen/dim_50dp"
-                android:padding="@dimen/dim_5dp"/>
+                android:padding="@dimen/dim_5dp"
+                android:src="@drawable/update"/>
 
             <ImageView
                 android:id="@+id/imageCancelTicket"
                 android:layout_width="@dimen/dim_50dp"
                 android:layout_height="@dimen/dim_50dp"
-                android:padding="@dimen/dim_5dp"/>
+                android:padding="@dimen/dim_5dp"
+                android:src="@drawable/cancel"/>
 
         </LinearLayout>
 
