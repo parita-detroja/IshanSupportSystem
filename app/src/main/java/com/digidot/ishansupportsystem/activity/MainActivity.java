@@ -54,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
         ticket.setFaultId("Fauld");
         ticket.setDate("11-05-2018");
         mListTicket.add(ticket);
-        TicketListAdapter adapter = new TicketListAdapter(getApplicationContext(), mListTicket);
+        TicketListAdapter adapter = new TicketListAdapter(getApplicationContext(), mListTicket,
+                new TicketListAdapter.OnItemClickListener() {
+                    @Override public void onItemClick() {
+                        Intent mIntent = new Intent(MainActivity.this,ViewTicketActivity.class);
+                    }
+                });
         mRecyclerViewTicketList.setAdapter(adapter);
     }
 

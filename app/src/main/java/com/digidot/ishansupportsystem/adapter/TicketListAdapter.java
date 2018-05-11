@@ -20,10 +20,16 @@ import java.util.List;
 public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.ViewHolder> {
     private List<Ticket> ticketList;
     private Context context;
+    private final OnItemClickListener listener;
 
-    public TicketListAdapter(Context context, List<Ticket> notificationList) {
+    public TicketListAdapter(Context context, List<Ticket> notificationList, OnItemClickListener listener) {
         this.ticketList = notificationList;
         this.context = context;
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick();
     }
 
     @Override
