@@ -1,6 +1,7 @@
 package com.digidot.ishansupportsystem.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digidot.ishansupportsystem.R;
+import com.digidot.ishansupportsystem.activity.ViewTicketActivity;
 import com.digidot.ishansupportsystem.model.Ticket;
+import com.digidot.ishansupportsystem.util.Constant;
 
 import java.util.List;
 
@@ -20,16 +23,10 @@ import java.util.List;
 public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.ViewHolder> {
     private List<Ticket> ticketList;
     private Context context;
-    private final OnItemClickListener listener;
 
-    public TicketListAdapter(Context context, List<Ticket> notificationList, OnItemClickListener listener) {
+    public TicketListAdapter(Context context, List<Ticket> notificationList) {
         this.ticketList = notificationList;
         this.context = context;
-        this.listener = listener;
-    }
-
-    public interface OnItemClickListener {
-        void onItemClick();
     }
 
     @Override
@@ -40,9 +37,9 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
 
     @Override
     public void onBindViewHolder(final TicketListAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.mTextViewTicketId.setText(ticketList.get(i).getTicketId());
-        viewHolder.mTextViewFault.setText(ticketList.get(i).getFaultId());
-        viewHolder.mTextViewDate.setText(ticketList.get(i).getDate());
+        viewHolder.mTextViewTicketNo.setText(ticketList.get(i).getStrTicketNo());
+        viewHolder.mTextViewFault.setText(ticketList.get(i).getStrFault());
+        viewHolder.mTextViewDate.setText(ticketList.get(i).getStrTicketDate());
         viewHolder.mImageViewCancelTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,7 +60,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView mTextViewTicketId;
+        private TextView mTextViewTicketNo;
         private TextView mTextViewFault;
         private TextView mTextViewDate;
         private ImageView mImageViewUpdateTicket;
@@ -71,11 +68,26 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
 
         public ViewHolder(View view) {
             super(view);
-            mTextViewTicketId = view.findViewById(R.id.textViewTicketId);
+            mTextViewTicketNo = view.findViewById(R.id.textViewTicketNo);
             mTextViewFault = view.findViewById(R.id.textViewFault);
             mTextViewDate = view.findViewById(R.id.textViewDate);
             mImageViewUpdateTicket = view.findViewById(R.id.imageUpdateTicket);
             mImageViewCancelTicket = view.findViewById(R.id.imageCancelTicket);
+
+            view.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(v.getContext(), ViewTicketActivity.class);
+                    int itemPosition=getAdapterPosition();
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_ID,ticketList.get(itemPosition).getIntTicketId());
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_NO,ticketList.get(itemPosition).getStrTicketNo());
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_DATE,ticketList.get(itemPosition).getStrTicketDate());
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_FAULT,ticketList.get(itemPosition).getStrFault());
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_DESCRIPTION,ticketList.get(itemPosition).getStrDescription());
+                    intent.putExtra("position",itemPosition);
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 

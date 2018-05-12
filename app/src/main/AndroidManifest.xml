@@ -20,14 +20,13 @@
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.CreateTicketActivity"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".activity.UpdateTicketActivity" />
-        <activity android:name=".activity.ViewTicketActivity"/>
+        <activity android:name=".activity.ViewTicketActivity"></activity>
     </application>
 
 </manifest>

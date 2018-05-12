@@ -19,14 +19,14 @@
                 android:layout_alignParentTop="true">
 
                 <LinearLayout
-                    android:id="@+id/linearLayoutTicketId"
+                    android:id="@+id/linearLayoutTicketNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:weightSum="3">
 
                     <TextView
-                        android:id="@+id/textviewTicketId"
+                        android:id="@+id/textViewTicketNo"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
                         android:text="@string/ticketId"
@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:layout_below="@id/linearLayoutTicketId">
+                    android:layout_below="@id/linearLayoutTicketNo">
 
                     <TextView
                         android:id="@+id/textviewDate"

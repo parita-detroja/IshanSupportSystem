@@ -17,8 +17,18 @@ public class Constant {
     public static final String PREF_KEY_LOGIN="login";
     public static final boolean LOGIN=false;
 
+    public static final String TICKET_STATUS_OPEN="Open";
+    public static final String TICKET_STATUS_CLOSE="Close";
+    public static final String TICKET_STATUS_DEPENDENCY="Dependency";
+
     public static final String PREF_KEY_USER_ID="userId";
     public static final String PREF_KEY_USERNAME="username";
+
+    public static final String INTENT_PARAM_TICKET_ID="ticketId";
+    public static final String INTENT_PARAM_TICKET_NO="ticketNo";
+    public static final String INTENT_PARAM_TICKET_DATE="ticketDate";
+    public static final String INTENT_PARAM_TICKET_FAULT="ticketFault";
+    public static final String INTENT_PARAM_TICKET_DESCRIPTION="ticketDescription";
 
     public static final String INTENT_PARAM_EVENT_ID="eventId";
     public static final String INTENT_PARAM_BUTTON_ID="buttonId";
