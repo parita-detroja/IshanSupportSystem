@@ -28,7 +28,7 @@
             android:padding="@dimen/dim_5dp">
 
             <TextView
-                android:id="@+id/textViewTicketId"
+                android:id="@+id/textViewTicketNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/text_regular_white"

@@ -5,68 +5,85 @@ package com.digidot.ishansupportsystem.model;
  */
 
 public class Ticket {
-    private String OfficeId;
-    private String FaultId;
-    private String Description;
-    private String UserId ;
-    private String TicketId;
-    private String Date;
+    private String intTicketId;
+    private String strTicketNo;
+    private String strTicketDate;
+    private String strTicketStatus;
+    private String strFullName;
+    private String strOfficeName;
+    private String strUserName;
+    private String strFault;
+    private String strDescription;
 
-    public String getOfficeId() {
-        return OfficeId;
+    public String getIntTicketId() {
+        return intTicketId;
     }
 
-    public void setOfficeId(String officeId) {
-        OfficeId = officeId;
+    public void setIntTicketId(String intTicketId) {
+        this.intTicketId = intTicketId;
     }
 
-    public String getFaultId() {
-        return FaultId;
+    public String getStrTicketNo() {
+        return strTicketNo;
     }
 
-    public void setFaultId(String faultId) {
-        FaultId = faultId;
+    public void setStrTicketNo(String strTicketNo) {
+        this.strTicketNo = strTicketNo;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getStrTicketDate() {
+        return strTicketDate;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setStrTicketDate(String strTicketDate) {
+        this.strTicketDate = strTicketDate;
     }
 
-    public String getUserId() {
-        return UserId;
+    public String getStrTicketStatus() {
+        return strTicketStatus;
     }
 
-    public void setUserId(String userId) {
-        UserId = userId;
+    public void setStrTicketStatus(String strTicketStatus) {
+        this.strTicketStatus = strTicketStatus;
     }
 
-    public String getTicketId() {
-        return TicketId;
+    public String getStrFullName() {
+        return strFullName;
     }
 
-    public void setTicketId(String ticketId) {
-        TicketId = ticketId;
+    public void setStrFullName(String strFullName) {
+        this.strFullName = strFullName;
     }
 
-    public String getDate() {
-        return Date;
+    public String getStrOfficeName() {
+        return strOfficeName;
     }
 
-    public void setDate(String date) {
-        Date = date;
+    public void setStrOfficeName(String strOfficeName) {
+        this.strOfficeName = strOfficeName;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "OfficeId='" + OfficeId + '\'' +
-                ", FaultId='" + FaultId + '\'' +
-                ", Description='" + Description + '\'' +
-                ", UserId='" + UserId + '\'' +
-                '}';
+    public String getStrUserName() {
+        return strUserName;
+    }
+
+    public void setStrUserName(String strUserName) {
+        this.strUserName = strUserName;
+    }
+
+    public String getStrFault() {
+        return strFault;
+    }
+
+    public void setStrFault(String strFault) {
+        this.strFault = strFault;
+    }
+
+    public String getStrDescription() {
+        return strDescription;
+    }
+
+    public void setStrDescription(String strDescription) {
+        this.strDescription = strDescription;
     }
 }

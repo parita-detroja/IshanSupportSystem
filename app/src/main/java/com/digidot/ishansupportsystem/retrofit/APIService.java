@@ -10,6 +10,7 @@ import com.digidot.ishansupportsystem.model.LoginResponse;
 import com.digidot.ishansupportsystem.model.OfficeResponse;
 import com.digidot.ishansupportsystem.model.ResolutionResponse;
 import com.digidot.ishansupportsystem.model.StateResponse;
+import com.digidot.ishansupportsystem.model.TicketResponse;
 import com.digidot.ishansupportsystem.model.ZoneResponse;
 
 import java.util.Map;
@@ -73,4 +74,8 @@ public interface APIService {
     @POST("CreateTicket")
     @FormUrlEncoded
     Call<Void> createTicket(@FieldMap Map<String, String> createTicketRequest);
+
+    @POST("ViewTicket")
+    @FormUrlEncoded
+    Call<TicketResponse> getTickets(@FieldMap Map<String, String> ticketRequest);
 }
