@@ -12,11 +12,27 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/dim_5dp"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    android:id="@+id/imageUpdateTicket"
+                    android:layout_width="@dimen/dim_40dp"
+                    android:layout_height="@dimen/dim_40dp"
+                    android:padding="@dimen/dim_5dp"
+                    android:src="@drawable/update" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/relativeLayoutTicketDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/dim_10dp"
-                android:layout_alignParentTop="true">
+                android:layout_below="@+id/relativeLayout">
 
                 <LinearLayout
                     android:id="@+id/linearLayoutTicketNo"
@@ -29,13 +45,13 @@
                         android:id="@+id/textViewTicketNo"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:text="@string/ticketId"
+                        android:text="@string/ticketNo"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:id="@+id/textviewTicketIdValue"
+                        android:id="@+id/textviewTicketNoValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticketId"
+                        android:text="@string/ticketNo"
                         android:layout_weight="2"/>
 
                 </LinearLayout>
@@ -137,36 +153,32 @@
                         android:id="@+id/textviewStatusDate"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:text="@string/ticket_date"
-                        android:layout_weight="1"/>
+                        android:text="@string/ticket_date"/>
 
                     <TextView
                         android:id="@+id/textviewStatusDateValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticket_date"
-                        android:layout_weight="2"/>
+                        android:text="@string/ticket_date"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayoutDependency"
+                    android:id="@+id/linearLayoutTicketStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:layout_below="@id/linearLayoutDependency">
+                    android:layout_below="@id/linearLayoutStatusDate">
 
                     <TextView
-                        android:id="@+id/textviewDependency"
+                        android:id="@+id/textviewTicketStatus"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:layout_weight="1"
-                        android:text="@string/ticket_dependency"/>
+                        android:text="@string/ticket_status"/>
 
                     <TextView
-                        android:id="@+id/textviewDependencyValue"
+                        android:id="@+id/textviewTicketStatusValue"
                         style="@style/text_regular_black"
-                        android:layout_weight="2"
-                        android:text="@string/ticket_dependency"/>
+                        android:text="@string/ticket_status"/>
 
                 </LinearLayout>
 
@@ -175,20 +187,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:layout_below="@id/linearLayoutDependency">
+                    android:visibility="gone"
+                    android:layout_below="@id/linearLayoutTicketStatus">
 
                     <TextView
                         android:id="@+id/textViewDependencyCode"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:layout_weight="1"
                         android:text="@string/ticket_dependency_code"/>
 
                     <TextView
                         android:id="@+id/textViewDependencyCodeValue"
                         style="@style/text_regular_black"
-                        android:layout_weight="2"
-                        android:text="@string/ticket_dependency_code"/>
+                        android:text="No Dependency"/>
 
                 </LinearLayout>
 
@@ -197,19 +208,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:visibility="gone"
                     android:layout_below="@id/linearLayoutDependencyCode">
 
                     <TextView
                         android:id="@+id/textviewResolutionCode"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:layout_weight="1"
                         android:text="@string/ticket_resolution_code"/>
 
                     <TextView
                         android:id="@+id/textviewResolutionCodeValue"
                         style="@style/text_regular_black"
-                        android:layout_weight="2"
                         android:text="@string/ticket_resolution_code"/>
 
                 </LinearLayout>
@@ -219,19 +229,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
+                    android:visibility="gone"
                     android:layout_below="@id/linearLayoutResolutionCode">
 
                     <TextView
                         android:id="@+id/textviewBroadCategory"
                         style="@style/text_regular_black"
                         android:textStyle="bold"
-                        android:layout_weight="1"
                         android:text="@string/ticket_broad_category"/>
 
                     <TextView
                         android:id="@+id/textviewBroadCategoryValue"
                         style="@style/text_regular_black"
-                        android:layout_weight="2"
                         android:text="@string/ticket_broad_category"/>
 
                 </LinearLayout>

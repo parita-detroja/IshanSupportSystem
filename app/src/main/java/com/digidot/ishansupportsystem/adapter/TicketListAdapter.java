@@ -84,7 +84,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
                     intent.putExtra(Constant.INTENT_PARAM_TICKET_DATE,ticketList.get(itemPosition).getStrTicketDate());
                     intent.putExtra(Constant.INTENT_PARAM_TICKET_FAULT,ticketList.get(itemPosition).getStrFault());
                     intent.putExtra(Constant.INTENT_PARAM_TICKET_DESCRIPTION,ticketList.get(itemPosition).getStrDescription());
-                    intent.putExtra("position",itemPosition);
+                    intent.putExtra(Constant.INTENT_PARAM_TICKET_STATUS,ticketList.get(itemPosition).getStrTicketStatus());
                     v.getContext().startActivity(intent);
                 }
             });

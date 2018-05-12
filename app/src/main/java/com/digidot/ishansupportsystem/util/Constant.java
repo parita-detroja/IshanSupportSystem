@@ -29,23 +29,7 @@ public class Constant {
     public static final String INTENT_PARAM_TICKET_DATE="ticketDate";
     public static final String INTENT_PARAM_TICKET_FAULT="ticketFault";
     public static final String INTENT_PARAM_TICKET_DESCRIPTION="ticketDescription";
-
-    public static final String INTENT_PARAM_EVENT_ID="eventId";
-    public static final String INTENT_PARAM_BUTTON_ID="buttonId";
-    public static final String INTENT_PARAM_ALBUM_ID="albumID";
-    public static final String INTENT_PARAM_ALBUM_NAME="albumName";
-    public static final String INTENT_PARAM_EVENT_DATA="strEventData";
-    public static final String PREF_KEY_NOTIFICATION_ACTIVATION_KEY="notificationActivationFlag";
-    /*drawer name*/
-    public static CharSequence FRAGMNET_HOME="Home";
-    public static CharSequence FRAGMNET_NOTIFICATIONS="Notifications";
-    public static CharSequence FRAGMNET_COMPANY_DETAILS ="Company Details";
-    public static CharSequence FRAGMNET_PHOTO_GALLERY="Gallery";
-    public static CharSequence FRAGMNET_CONTEST="Contest";
-    public static CharSequence FRAGMNET_EVENT_DETAILS="Notification Details";
-    public static CharSequence FRAGMNET_CONTECT_US="Contact Us";
-    public static CharSequence FRAGMNET_SETTINGS="Settings";
-
+    public static final String INTENT_PARAM_TICKET_STATUS="ticketStatus";
 
     public static String PREF_KEY_MENU_LIST="menuList";
     public static String BASE_URL = "http://webapi.digidott.com/DigidottWebService.asmx/";

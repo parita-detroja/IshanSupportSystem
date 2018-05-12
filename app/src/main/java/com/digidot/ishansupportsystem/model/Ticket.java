@@ -14,6 +14,69 @@ public class Ticket {
     private String strUserName;
     private String strFault;
     private String strDescription;
+    private String intStatusId;
+    private String dtStatusDate;
+    private String strRemarks;
+    private String strResolutionCode;
+    private String strDependency;
+    private String strDependencyCode;
+    private String strBroadCategory;
+
+    public String getStrDependencyCode() {
+        return strDependencyCode;
+    }
+
+    public void setStrDependencyCode(String strDependencyCode) {
+        this.strDependencyCode = strDependencyCode;
+    }
+
+    public String getIntStatusId() {
+        return intStatusId;
+    }
+
+    public void setIntStatusId(String intStatusId) {
+        this.intStatusId = intStatusId;
+    }
+
+    public String getDtStatusDate() {
+        return dtStatusDate;
+    }
+
+    public void setDtStatusDate(String dtStatusDate) {
+        this.dtStatusDate = dtStatusDate;
+    }
+
+    public String getStrRemarks() {
+        return strRemarks;
+    }
+
+    public void setStrRemarks(String strRemarks) {
+        this.strRemarks = strRemarks;
+    }
+
+    public String getStrResolutionCode() {
+        return strResolutionCode;
+    }
+
+    public void setStrResolutionCode(String strResolutionCode) {
+        this.strResolutionCode = strResolutionCode;
+    }
+
+    public String getStrDependency() {
+        return strDependency;
+    }
+
+    public void setStrDependency(String strDependency) {
+        this.strDependency = strDependency;
+    }
+
+    public String getStrBroadCategory() {
+        return strBroadCategory;
+    }
+
+    public void setStrBroadCategory(String strBroadCategory) {
+        this.strBroadCategory = strBroadCategory;
+    }
 
     public String getIntTicketId() {
         return intTicketId;

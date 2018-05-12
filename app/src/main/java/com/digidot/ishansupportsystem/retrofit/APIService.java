@@ -78,4 +78,10 @@ public interface APIService {
     @POST("ViewTicket")
     @FormUrlEncoded
     Call<TicketResponse> getTickets(@FieldMap Map<String, String> ticketRequest);
+
+    @POST("ViewTicketHistory")
+    @FormUrlEncoded
+    Call<TicketResponse> getTicketHistory(@FieldMap Map<String, String> ticketHistoryRequest);
+
+
 }
