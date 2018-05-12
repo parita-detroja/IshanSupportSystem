@@ -84,7 +84,7 @@
             android:layout_marginBottom="@dimen/dim_10dp"
             android:paddingTop="@dimen/dim_5dp"
             android:paddingBottom="@dimen/dim_5dp"
-            android:hint="@string/txt_enter_description"
+            android:hint="@string/hint_enter_description"
             android:textColor="@color/colorBlack"
             android:layout_below="@+id/spinnerFault"
             android:inputType="text" />
