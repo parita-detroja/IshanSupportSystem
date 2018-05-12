@@ -111,6 +111,7 @@
 
 
     <string name="txt_create_ticket">Create Ticket</string>
+    <string name="txt_enter_description">Enter description</string>
 
 
 </resources>

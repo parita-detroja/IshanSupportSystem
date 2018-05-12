@@ -2,8 +2,8 @@ package com.digidot.ishansupportsystem.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +20,6 @@ import com.digidot.ishansupportsystem.model.Client;
 import com.digidot.ishansupportsystem.model.ClientResponse;
 import com.digidot.ishansupportsystem.model.Fault;
 import com.digidot.ishansupportsystem.model.FaultResponse;
-import com.digidot.ishansupportsystem.model.LoginRequest;
-import com.digidot.ishansupportsystem.model.LoginResponse;
 import com.digidot.ishansupportsystem.model.Office;
 import com.digidot.ishansupportsystem.model.OfficeResponse;
 import com.digidot.ishansupportsystem.model.State;
@@ -51,10 +49,8 @@ public class CreateTicketActivity extends AppCompatActivity {
     private Spinner mSpinnerFault;
     private Spinner mSpinnerClient;
     private EditText mEditTextDescription;
-    private Button mButtonCreateTicket;
 
     private APIService mApiService;
-    private SharedPreferences pref;
 
     private StateResponse stateResponse;
     private CityResponse cityResponse;
@@ -67,16 +63,19 @@ public class CreateTicketActivity extends AppCompatActivity {
     private int faultPosition;
     private int officePosition;
 
-
+    private List<String> stateList = new ArrayList<>();
+    private List<String> cityList = new ArrayList<>();
+    private List<String> zoneList = new ArrayList<>();
+    private List<String> clientList = new ArrayList<>();
+    private List<String> officeList = new ArrayList<>();
     private String userId = "0";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_ticket);
         mApiService= ApiUtils.getAPIService();
-        pref=getApplicationContext().getSharedPreferences("IffcoPref",0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID,"0");
         Log.e("User id", userId);
 
@@ -87,7 +86,7 @@ public class CreateTicketActivity extends AppCompatActivity {
 
         mEditTextDescription = findViewById(R.id.etDescription);
 
-        mButtonCreateTicket = findViewById(R.id.btnCreateTicket);
+        Button mButtonCreateTicket = findViewById(R.id.btnCreateTicket);
 
         mButtonCreateTicket.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,11 +102,48 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerOffice = findViewById(R.id.spinnerOffice);
         mSpinnerFault = findViewById(R.id.spinnerFault);
         mSpinnerClient = findViewById(R.id.spinnerClient);
+        mSpinnerCity.setEnabled(false);
+        mSpinnerZone.setEnabled(false);
+        mSpinnerOffice.setEnabled(false);
+        mSpinnerClient.setEnabled(false);
+        stateList.add("Select State");
+
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, stateList);
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerState.setAdapter(stateAdapter);
+
+        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, clientList);
+        clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerClient.setAdapter(clientAdapter);
+
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, cityList);
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerCity.setAdapter(cityAdapter);
+
+        ArrayAdapter<String> zoneAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, zoneList);
+        zoneAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerZone.setAdapter(zoneAdapter);
+
+        ArrayAdapter<String> officeAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, officeList);
+        officeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerOffice.setAdapter(officeAdapter);
 
         mSpinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getCity(stateResponse.getTblState().get(position).getIntStateId());
+                if(position != 0){
+                    zoneList.clear();
+                    clientList.clear();
+                    officeList.clear();
+                    zoneList.add("Select Zone");
+                    clientList.add("Select Client");
+                    officeList.add("Select Office");
+                    mSpinnerCity.setEnabled(true);
+                    mSpinnerZone.setEnabled(false);
+                    mSpinnerOffice.setEnabled(false);
+                    mSpinnerClient.setEnabled(false);
+                    getCity(stateResponse.getTblState().get(position-1).getIntStateId());
+                }
             }
 
             @Override
@@ -119,7 +155,16 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getZone(cityResponse.getTblCity().get(position).getIntCityId());
+                if(position != 0){
+                    clientList.clear();
+                    officeList.clear();
+                    clientList.add("Select Client");
+                    officeList.add("Select Office");
+                    mSpinnerZone.setEnabled(true);
+                    mSpinnerOffice.setEnabled(false);
+                    mSpinnerClient.setEnabled(false);
+                    getZone(cityResponse.getTblCity().get(position-1).getIntCityId());
+                }
             }
 
             @Override
@@ -131,8 +176,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerZone.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getClient(zoneResponse.getTblZone().get(position).getIntZoneId());
-                zonePosition = position;
+                if(position != 0){
+                    officeList.clear();
+                    officeList.add("Select Office");
+                    mSpinnerOffice.setEnabled(false);
+                    mSpinnerClient.setEnabled(true);
+                    getClient(zoneResponse.getTblZone().get(position-1).getIntZoneId());
+                    zonePosition = position-1;
+                }
             }
 
             @Override
@@ -144,7 +195,10 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getOffice(zoneResponse.getTblZone().get(zonePosition).getIntZoneId(),clientResponse.getTblClient().get(position).getIntClientId());
+                if(position != 0){
+                    getOffice(zoneResponse.getTblZone().get(zonePosition).getIntZoneId(),clientResponse.getTblClient().get(position-1).getIntClientId());
+                    mSpinnerOffice.setEnabled(true);
+                }
             }
 
             @Override
@@ -156,7 +210,7 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerOffice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                officePosition = position;
+                officePosition = position-1;
             }
 
             @Override
@@ -168,7 +222,7 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerFault.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                faultPosition = position;
+                faultPosition = position-1;
             }
 
             @Override
@@ -189,18 +243,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mApiService.getState(stateFields).enqueue(new Callback<StateResponse>() {
             @Override
             public void onResponse(Call<StateResponse> call, Response<StateResponse> response) {
-                List<String> stateList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     stateResponse = response.body();
                     if(stateResponse!=null && stateResponse.getTblState().size()> 0){
+                        stateList.clear();
+                        stateList.add("Select State");
                         for(State state: stateResponse.getTblState()){
                             stateList.add(state.getStrStateName());
                         }
-
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, stateList);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinnerState.setAdapter(dataAdapter);
-
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -229,18 +279,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mApiService.getCity(cityFields).enqueue(new Callback<CityResponse>() {
             @Override
             public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
-                List<String> cityList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     cityResponse = response.body();
                     if(cityResponse!=null && cityResponse.getTblCity().size()> 0){
+                        cityList.clear();
+                        cityList.add("Select City");
                         for(City city: cityResponse.getTblCity()){
                             cityList.add(city.getStrCityName());
                         }
-
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, cityList);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinnerCity.setAdapter(dataAdapter);
-
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -270,18 +316,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mApiService.getZone(zoneFields).enqueue(new Callback<ZoneResponse>() {
             @Override
             public void onResponse(Call<ZoneResponse> call, Response<ZoneResponse> response) {
-                List<String> zoneList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     zoneResponse = response.body();
                     if(zoneResponse!=null && zoneResponse.getTblZone().size()> 0){
+                        zoneList.clear();
+                        zoneList.add("Select Zone");
                         for(Zone zone: zoneResponse.getTblZone()){
                             zoneList.add(zone.getStrZoneName());
                         }
-
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, zoneList);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinnerZone.setAdapter(dataAdapter);
-
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -310,18 +352,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mApiService.getClient(clientFields).enqueue(new Callback<ClientResponse>() {
             @Override
             public void onResponse(Call<ClientResponse> call, Response<ClientResponse> response) {
-                List<String> clientList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     clientResponse = response.body();
                     if(clientResponse!=null && clientResponse.getTblClient().size()> 0){
+                        clientList.clear();
+                        clientList.add("Select Client");
                         for(Client client: clientResponse.getTblClient()){
                             clientList.add(client.getStrFullName());
                         }
-
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, clientList);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinnerClient.setAdapter(dataAdapter);
-
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -351,18 +389,14 @@ public class CreateTicketActivity extends AppCompatActivity {
         mApiService.getOffice(officeFields).enqueue(new Callback<OfficeResponse>() {
             @Override
             public void onResponse(Call<OfficeResponse> call, Response<OfficeResponse> response) {
-                List<String> officeList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     officeResponse = response.body();
                     if(officeResponse!=null && officeResponse.getTblOffice().size()> 0){
+                        officeList.clear();
+                        officeList.add("Select Office");
                         for(Office office: officeResponse.getTblOffice()){
                             officeList.add(office.getStrOfficeName());
                         }
-
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, officeList);
-                        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        mSpinnerOffice.setAdapter(dataAdapter);
-
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -391,6 +425,7 @@ public class CreateTicketActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<FaultResponse> call, Response<FaultResponse> response) {
                 List<String> faultList = new ArrayList<>();
+                faultList.add("Select Fault");
                 if(response.isSuccessful() && response.code()==200) {
                     faultResponse = response.body();
                     if(faultResponse!=null && faultResponse.getTblFault().size()> 0){
@@ -398,7 +433,7 @@ public class CreateTicketActivity extends AppCompatActivity {
                             faultList.add(fault.getStrFault());
                         }
 
-                        ArrayAdapter dataAdapter = new ArrayAdapter(CreateTicketActivity.this, R.layout.custom_spinner_item, faultList);
+                        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, faultList);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mSpinnerFault.setAdapter(dataAdapter);
 

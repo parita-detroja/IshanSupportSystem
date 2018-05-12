@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/dim_20dp">
 
         <Spinner
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
-            style="@style/text_large_black" />
+            style="@style/text_large_black"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -84,9 +84,10 @@
             android:layout_marginBottom="@dimen/dim_10dp"
             android:paddingTop="@dimen/dim_5dp"
             android:paddingBottom="@dimen/dim_5dp"
-            android:hint="Enter description"
+            android:hint="@string/txt_enter_description"
             android:textColor="@color/colorBlack"
-            android:layout_below="@+id/spinnerFault"/>
+            android:layout_below="@+id/spinnerFault"
+            android:inputType="text" />
 
         <Button
             android:id="@+id/btnCreateTicket"
