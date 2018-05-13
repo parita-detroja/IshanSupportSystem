@@ -107,132 +107,39 @@ public class CreateTicketActivity extends AppCompatActivity {
         mSpinnerOffice.setEnabled(false);
         mSpinnerClient.setEnabled(false);
         stateList.add("Select State");
+        cityList.add("Select City");
+        zoneList.add("Select Zone");
+        clientList.add("Select Client");
+        officeList.add("Select Office");
+        setCityAdapter();
+        setZoneAdapter();
+        setClientAdapter();
+        setOfficeAdapter();
+        getState();
+        getFault();
+    }
 
-        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, stateList);
-        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerState.setAdapter(stateAdapter);
-
-        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, clientList);
-        clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinnerClient.setAdapter(clientAdapter);
-
+    private void setCityAdapter(){
         ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, cityList);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerCity.setAdapter(cityAdapter);
+    }
 
+    private void setZoneAdapter(){
         ArrayAdapter<String> zoneAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, zoneList);
         zoneAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerZone.setAdapter(zoneAdapter);
+    }
 
+    private void setClientAdapter(){
+        ArrayAdapter<String> clientAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, clientList);
+        clientAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerClient.setAdapter(clientAdapter);
+    }
+    private void setOfficeAdapter(){
         ArrayAdapter<String> officeAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, officeList);
         officeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinnerOffice.setAdapter(officeAdapter);
-
-        mSpinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
-                    zoneList.clear();
-                    clientList.clear();
-                    officeList.clear();
-                    zoneList.add("Select Zone");
-                    clientList.add("Select Client");
-                    officeList.add("Select Office");
-                    mSpinnerCity.setEnabled(true);
-                    mSpinnerZone.setEnabled(false);
-                    mSpinnerOffice.setEnabled(false);
-                    mSpinnerClient.setEnabled(false);
-                    getCity(stateResponse.getTblState().get(position-1).getIntStateId());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        mSpinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
-                    clientList.clear();
-                    officeList.clear();
-                    clientList.add("Select Client");
-                    officeList.add("Select Office");
-                    mSpinnerZone.setEnabled(true);
-                    mSpinnerOffice.setEnabled(false);
-                    mSpinnerClient.setEnabled(false);
-                    getZone(cityResponse.getTblCity().get(position-1).getIntCityId());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        mSpinnerZone.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
-                    officeList.clear();
-                    officeList.add("Select Office");
-                    mSpinnerOffice.setEnabled(false);
-                    mSpinnerClient.setEnabled(true);
-                    getClient(zoneResponse.getTblZone().get(position-1).getIntZoneId());
-                    zonePosition = position-1;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        mSpinnerClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position != 0){
-                    getOffice(zoneResponse.getTblZone().get(zonePosition).getIntZoneId(),clientResponse.getTblClient().get(position-1).getIntClientId());
-                    mSpinnerOffice.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        mSpinnerOffice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                officePosition = position-1;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        mSpinnerFault.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                faultPosition = position-1;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        getState();
-        getFault();
     }
 
     private void getState(){
@@ -251,6 +158,42 @@ public class CreateTicketActivity extends AppCompatActivity {
                         for(State state: stateResponse.getTblState()){
                             stateList.add(state.getStrStateName());
                         }
+                        ArrayAdapter<String> stateAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, stateList);
+                        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        mSpinnerState.setAdapter(stateAdapter);
+                        mSpinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if(position != 0){
+                                    mSpinnerCity.setEnabled(true);
+                                    mSpinnerZone.setEnabled(false);
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(false);
+                                    zoneList.clear();
+                                    clientList.clear();
+                                    officeList.clear();
+                                    zoneList.add("Select Zone");
+                                    clientList.add("Select Client");
+                                    officeList.add("Select Office");
+                                    setZoneAdapter();
+                                    setClientAdapter();
+                                    setOfficeAdapter();
+                                    getCity(stateResponse.getTblState().get(position-1).getIntStateId());
+                                }
+                                else{
+                                    mSpinnerCity.setEnabled(false);
+                                    mSpinnerZone.setEnabled(false);
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(false);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -287,6 +230,35 @@ public class CreateTicketActivity extends AppCompatActivity {
                         for(City city: cityResponse.getTblCity()){
                             cityList.add(city.getStrCityName());
                         }
+                        setCityAdapter();
+                        mSpinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if(position != 0){
+                                    mSpinnerZone.setEnabled(true);
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(false);
+                                    clientList.clear();
+                                    officeList.clear();
+                                    clientList.add("Select Client");
+                                    officeList.add("Select Office");
+                                    setClientAdapter();
+                                    setOfficeAdapter();
+                                    getZone(cityResponse.getTblCity().get(position-1).getIntCityId());
+                                }
+                                else{
+                                    mSpinnerZone.setEnabled(false);
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(false);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -324,6 +296,29 @@ public class CreateTicketActivity extends AppCompatActivity {
                         for(Zone zone: zoneResponse.getTblZone()){
                             zoneList.add(zone.getStrZoneName());
                         }
+                        setZoneAdapter();
+                        mSpinnerZone.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if(position != 0){
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(true);
+                                    officeList.clear();
+                                    officeList.add("Select Office");
+                                    setOfficeAdapter();
+                                    getClient(zoneResponse.getTblZone().get(position-1).getIntZoneId());
+                                    zonePosition = position-1;
+                                }else{
+                                    mSpinnerOffice.setEnabled(false);
+                                    mSpinnerClient.setEnabled(false);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -360,6 +355,24 @@ public class CreateTicketActivity extends AppCompatActivity {
                         for(Client client: clientResponse.getTblClient()){
                             clientList.add(client.getStrFullName());
                         }
+                        setClientAdapter();
+                        mSpinnerClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                if(position != 0){
+                                    getOffice(zoneResponse.getTblZone().get(zonePosition).getIntZoneId(),clientResponse.getTblClient().get(position-1).getIntClientId());
+                                    mSpinnerOffice.setEnabled(true);
+                                }
+                                else{
+                                    mSpinnerOffice.setEnabled(false);
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -397,6 +410,18 @@ public class CreateTicketActivity extends AppCompatActivity {
                         for(Office office: officeResponse.getTblOffice()){
                             officeList.add(office.getStrOfficeName());
                         }
+                        setOfficeAdapter();
+                        mSpinnerOffice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                officePosition = position-1;
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -436,7 +461,17 @@ public class CreateTicketActivity extends AppCompatActivity {
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(CreateTicketActivity.this, R.layout.custom_spinner_item, faultList);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mSpinnerFault.setAdapter(dataAdapter);
+                        mSpinnerFault.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                faultPosition = position-1;
+                            }
 
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
                     }else{
                         Toast.makeText(getApplicationContext(),"Success false",Toast.LENGTH_LONG).show();
                     }
@@ -469,6 +504,7 @@ public class CreateTicketActivity extends AppCompatActivity {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful() && response.code()==200) {
                     Toast.makeText(getApplicationContext(),"Ticket Created",Toast.LENGTH_LONG).show();
+                    finish();
                     Intent mIntent = new Intent(CreateTicketActivity.this,MainActivity.class);
                     startActivity(mIntent);
                 }else if(response.code()==401){

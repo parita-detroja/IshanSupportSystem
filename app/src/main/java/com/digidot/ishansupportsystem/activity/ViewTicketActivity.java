@@ -46,6 +46,7 @@ public class ViewTicketActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ticket);
+
         init();
         ticketId=getIntent().getStringExtra(Constant.INTENT_PARAM_TICKET_ID);
         ticketNo=getIntent().getStringExtra(Constant.INTENT_PARAM_TICKET_NO);
@@ -79,6 +80,7 @@ public class ViewTicketActivity extends AppCompatActivity {
                 intent.putExtra(Constant.INTENT_PARAM_TICKET_DEPENDENCY_CODE,mTextViewDependencyCodeValue.getText().toString());
                 intent.putExtra(Constant.INTENT_PARAM_TICKET_BROAD_CATEGORY,mTextviewBroadCategoryValue.getText().toString());
                 intent.putExtra(Constant.INTENT_PARAM_TICKET_RESOLUTION_CODE,mTextviewResolutionCodeValue.getText().toString());
+                finish();
                 startActivity(intent);
             }
         });
@@ -144,7 +146,7 @@ public class ViewTicketActivity extends AppCompatActivity {
             mTextviewBroadCategoryValue.setText(ticket.getStrBroadCategory());
         }else{
             mLinearLayoutDependencyCode.setVisibility(View.VISIBLE);
-            mTextViewDependencyCodeValue.setText(ticket.getStrDependencyCode());
+            mTextViewDependencyCodeValue.setText(ticket.getStrDependency());
         }
 
     }

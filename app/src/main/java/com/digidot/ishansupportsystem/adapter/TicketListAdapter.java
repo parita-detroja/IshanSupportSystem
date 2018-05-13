@@ -1,5 +1,6 @@
 package com.digidot.ishansupportsystem.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -22,11 +23,11 @@ import java.util.List;
 
 public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.ViewHolder> {
     private List<Ticket> ticketList;
-    private Context context;
+    private Activity activity;
 
-    public TicketListAdapter(Context context, List<Ticket> notificationList) {
+    public TicketListAdapter(Activity activity, List<Ticket> notificationList) {
         this.ticketList = notificationList;
-        this.context = context;
+        this.activity = activity;
     }
 
     @Override
@@ -40,18 +41,6 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
         viewHolder.mTextViewTicketNo.setText(ticketList.get(i).getStrTicketNo());
         viewHolder.mTextViewFault.setText(ticketList.get(i).getStrFault());
         viewHolder.mTextViewDate.setText(ticketList.get(i).getStrTicketDate());
-        viewHolder.mImageViewCancelTicket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        viewHolder.mImageViewUpdateTicket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 
     @Override
@@ -63,16 +52,12 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
         private TextView mTextViewTicketNo;
         private TextView mTextViewFault;
         private TextView mTextViewDate;
-        private ImageView mImageViewUpdateTicket;
-        private ImageView mImageViewCancelTicket;
 
         public ViewHolder(View view) {
             super(view);
             mTextViewTicketNo = view.findViewById(R.id.textViewTicketNo);
             mTextViewFault = view.findViewById(R.id.textViewFault);
             mTextViewDate = view.findViewById(R.id.textViewDate);
-            mImageViewUpdateTicket = view.findViewById(R.id.imageUpdateTicket);
-            mImageViewCancelTicket = view.findViewById(R.id.imageCancelTicket);
 
             view.setOnClickListener(new View.OnClickListener(){
                 @Override

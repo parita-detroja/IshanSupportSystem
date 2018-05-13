@@ -23,15 +23,14 @@
                 android:layout_height="@dimen/dim_100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="24dp"
-                android:src="@mipmap/app_logo"
-                android:visibility="invisible" />
+                android:src="@drawable/logo" />
 
             <EditText
                 android:id="@+id/edittextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/text_regular_black"
-                android:hint="Enter Username"
+                android:hint="@string/hint_enter_username"
                 android:background="@drawable/edit_text_line_style"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/imgViewAppLogo"/>
@@ -44,7 +43,7 @@
                 style="@style/text_regular_black"
                 android:background="@drawable/edit_text_line_style"
                 android:textColorHint="@color/colorGray"
-                android:hint="Enter OTP"
+                android:hint="@string/hint_enter_password"
                 android:layout_below="@+id/edittextUsername"/>
 
             <Button

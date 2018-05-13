@@ -112,10 +112,11 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful() && response.code()==200) {
                     TicketResponse ticketResponse = response.body();
                     if(ticketResponse!=null && ticketResponse.getTblTicket().size()> 0){
-                        TicketListAdapter adapter = new TicketListAdapter(getApplicationContext(), ticketResponse.getTblTicket());
+                        TicketListAdapter adapter = new TicketListAdapter(MainActivity.this, ticketResponse.getTblTicket());
                         mRecyclerViewTicketList.setAdapter(adapter);
                     }else{
-                        TicketListAdapter adapter = new TicketListAdapter(getApplicationContext(),new ArrayList<Ticket>());
+                        TicketListAdapter adapter = new TicketListAdapter(MainActivity.this
+                                ,new ArrayList<Ticket>());
                         mRecyclerViewTicketList.setAdapter(adapter);
                         Toast.makeText(getApplicationContext(),"Empty data",Toast.LENGTH_LONG).show();
                     }

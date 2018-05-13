@@ -64,7 +64,7 @@ public interface APIService {
     @FormUrlEncoded
     Call<FaultResponse> getFault(@FieldMap Map<String, String> faultRequest);
 
-    @POST("Broad")
+    @POST("BroadCategory")
     @FormUrlEncoded
     Call<BroadResponse> getBroad(@FieldMap Map<String, String> broadRequest);
 

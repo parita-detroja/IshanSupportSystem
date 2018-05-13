@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Ishan Support System</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_create_ticket">Create Ticket</string>
+    <string name="title_activity_view_ticket">View Ticket</string>
+    <string name="title_activity_update_ticket">Update Ticket</string>
     <string name="app_title">Event</string>
     <string name="view_all">View All</string>
     <string name="btn_datetime">Date Time</string>
@@ -40,10 +43,16 @@
     
     <!--Update Ticket-->
     <string name="txt_dependency">Dependency</string>
+    <string name="txt_dependency_code">Dependency Code</string>
     <string name="txt_resolution">Resolution</string>
+    <string name="txt_broad_category">Broad Category</string>
     <string name="txt_remarks">Remarks</string>
     <string name="txt_enter_remarks">Enter remarks</string>
     <string name="txt_update_ticket">Update Ticket</string>
+    <string name="txt_yes">Yes</string>
+    <string name="txt_no">No</string>
+    <string name="hint_enter_username">Enter Username</string>
+    <string name="hint_enter_password">Enter Password</string>
 
 </resources>
 

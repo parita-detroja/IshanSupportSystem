@@ -4,13 +4,13 @@ import java.util.List;
 
 public class UpdateTicketResponce {
 
-    private List<UpdateTicket> tblUpdateTicket;
+    private List<UpdateTicket> tblTicket;
 
-    public List<UpdateTicket> getTblUpdateTicket() {
-        return tblUpdateTicket;
+    public List<UpdateTicket> getTblTicket() {
+        return tblTicket;
     }
 
-    public void setTblUpdateTicket(List<UpdateTicket> tblUpdateTicket) {
-        this.tblUpdateTicket = tblUpdateTicket;
+    public void setTblTicket(List<UpdateTicket> tblTicket) {
+        this.tblTicket = tblTicket;
     }
 }

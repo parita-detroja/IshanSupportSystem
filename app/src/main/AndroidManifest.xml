@@ -23,10 +23,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CreateTicketActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".activity.UpdateTicketActivity" />
-        <activity android:name=".activity.ViewTicketActivity"></activity>
+        <activity
+            android:name=".activity.CreateTicketActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/title_activity_create_ticket"/>
+        <activity
+            android:name=".activity.UpdateTicketActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/title_activity_update_ticket"/>
+        <activity
+            android:name=".activity.ViewTicketActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:label="@string/title_activity_view_ticket"/>
     </application>
 
 </manifest>

@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         mApiService= ApiUtils.getAPIService();
         getProjectEndPoint();
         setContentView(R.layout.activity_login);
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         pref=getApplicationContext().getSharedPreferences("IffcoPref",0);
         editor=pref.edit();
         init();
