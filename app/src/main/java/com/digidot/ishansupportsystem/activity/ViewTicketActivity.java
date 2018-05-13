@@ -1,5 +1,6 @@
 package com.digidot.ishansupportsystem.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import retrofit2.Response;
 public class ViewTicketActivity extends AppCompatActivity {
     private String userId = "0";
     private String ticketId,ticketNo="",fault="",date="",description="",dependency="",broadcategory="",
-            resolutionCode="",ticketStatus="",ticketDate="";
+            resolutionCode="",ticketStatus="",ticketDate="",dependencyCode="";
     private APIService mApiService;
     private SharedPreferences pref;
     private TextView mTextviewTicketNoValue,mTextviewDateValue,
@@ -65,6 +66,22 @@ public class ViewTicketActivity extends AppCompatActivity {
         userId = pref.getString(Constant.PREF_KEY_USER_ID,"0");
         Log.e("User id", userId);
         getTicketHistory();
+        setListener();
+    }
+
+    private void setListener(){
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ViewTicketActivity.this, UpdateTicketActivity.class);
+                intent.putExtra(Constant.INTENT_PARAM_TICKET_ID,ticketId);
+                intent.putExtra(Constant.INTENT_PARAM_TICKET_NO,ticketNo);
+                intent.putExtra(Constant.INTENT_PARAM_TICKET_DEPENDENCY_CODE,mTextViewDependencyCodeValue.getText().toString());
+                intent.putExtra(Constant.INTENT_PARAM_TICKET_BROAD_CATEGORY,mTextviewBroadCategoryValue.getText().toString());
+                intent.putExtra(Constant.INTENT_PARAM_TICKET_RESOLUTION_CODE,mTextviewResolutionCodeValue.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     private void init(){

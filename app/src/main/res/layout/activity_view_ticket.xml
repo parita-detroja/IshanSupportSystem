@@ -51,7 +51,7 @@
                     <TextView
                         android:id="@+id/textviewTicketNoValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticketNo"
+                        android:text=""
                         android:layout_weight="2"/>
 
                 </LinearLayout>
@@ -74,7 +74,7 @@
                         android:id="@+id/textviewDateValue"
                         style="@style/text_regular_black"
                         android:layout_weight="2"
-                        android:text="@string/ticket_date"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -96,7 +96,7 @@
                         android:id="@+id/textViewFaultValue"
                         style="@style/text_regular_black"
                         android:layout_weight="2"
-                        android:text="@string/fault"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -118,7 +118,7 @@
                         android:id="@+id/textviewDescriptionValue"
                         style="@style/text_regular_black"
                         android:layout_weight="2"
-                        android:text="@string/ticket_description"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -158,7 +158,7 @@
                     <TextView
                         android:id="@+id/textviewStatusDateValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticket_date"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -178,7 +178,7 @@
                     <TextView
                         android:id="@+id/textviewTicketStatusValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticket_status"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -199,7 +199,7 @@
                     <TextView
                         android:id="@+id/textViewDependencyCodeValue"
                         style="@style/text_regular_black"
-                        android:text="No Dependency"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -220,7 +220,7 @@
                     <TextView
                         android:id="@+id/textviewResolutionCodeValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticket_resolution_code"/>
+                        android:text=""/>
 
                 </LinearLayout>
 
@@ -241,7 +241,7 @@
                     <TextView
                         android:id="@+id/textviewBroadCategoryValue"
                         style="@style/text_regular_black"
-                        android:text="@string/ticket_broad_category"/>
+                        android:text=""/>
 
                 </LinearLayout>
 

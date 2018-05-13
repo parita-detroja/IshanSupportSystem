@@ -30,6 +30,10 @@ public class Constant {
     public static final String INTENT_PARAM_TICKET_FAULT="ticketFault";
     public static final String INTENT_PARAM_TICKET_DESCRIPTION="ticketDescription";
     public static final String INTENT_PARAM_TICKET_STATUS="ticketStatus";
+    public static final String INTENT_PARAM_TICKET_DEPENDENCY_CODE="dependencyCode";
+    public static final String INTENT_PARAM_TICKET_DEPENDENCY="dependency";
+    public static final String INTENT_PARAM_TICKET_RESOLUTION_CODE="resolutionCode";
+    public static final String INTENT_PARAM_TICKET_BROAD_CATEGORY="broadCategory";
 
     public static String PREF_KEY_MENU_LIST="menuList";
     public static String BASE_URL = "http://webapi.digidott.com/DigidottWebService.asmx/";
