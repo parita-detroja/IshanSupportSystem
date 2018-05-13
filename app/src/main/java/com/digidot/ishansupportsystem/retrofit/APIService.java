@@ -11,6 +11,7 @@ import com.digidot.ishansupportsystem.model.OfficeResponse;
 import com.digidot.ishansupportsystem.model.ResolutionResponse;
 import com.digidot.ishansupportsystem.model.StateResponse;
 import com.digidot.ishansupportsystem.model.TicketResponse;
+import com.digidot.ishansupportsystem.model.UpdateTicketResponce;
 import com.digidot.ishansupportsystem.model.ZoneResponse;
 
 import java.util.Map;
@@ -83,5 +84,7 @@ public interface APIService {
     @FormUrlEncoded
     Call<TicketResponse> getTicketHistory(@FieldMap Map<String, String> ticketHistoryRequest);
 
-
+    @POST("UpdateTicket")
+    @FormUrlEncoded
+    Call<UpdateTicketResponce> getUpdateTicket(@FieldMap Map<String, String> updateTicketRequest);
 }

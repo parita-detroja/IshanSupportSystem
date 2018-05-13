@@ -1,9 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.digidot.ishansupportsystem.activity.UpdateTicketActivity">
+    tools:context="com.digidot.ishansupportsystem.activity.UpdateTicketActivity"
+    android:padding="@dimen/dim_20dp">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textTicketNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        android:text="Ticket number"/>
+
+    <TextView
+        android:id="@+id/textDependency"
+        style="@style/text_update_regular_black"
+        android:textStyle="bold"
+        android:text="@string/txt_dependency"
+        android:layout_below="@+id/textTicketNumber"/>
+
+    <Spinner
+        android:paddingTop="@dimen/dim_5dp"
+        android:paddingBottom="@dimen/dim_5dp"
+        android:id="@+id/spinnerDependency"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dim_10dp"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        style="@style/text_large_black"
+        android:layout_below="@+id/textDependency" />
+
+    <TextView
+        android:id="@+id/textResolution"
+        style="@style/text_update_regular_black"
+        android:textStyle="bold"
+        android:text="@string/txt_resolution"
+        android:layout_below="@+id/spinnerDependency"/>
+
+    <Spinner
+        android:paddingTop="@dimen/dim_5dp"
+        android:paddingBottom="@dimen/dim_5dp"
+        android:id="@+id/spinnerResolution"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dim_10dp"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        style="@style/text_large_black"
+        android:layout_below="@+id/textResolution"/>
+
+    <TextView
+        android:id="@+id/textRemarks"
+        style="@style/text_update_regular_black"
+        android:textStyle="bold"
+        android:text="@string/txt_remarks"
+        android:layout_below="@+id/spinnerResolution"/>
+
+    <EditText
+        android:id="@+id/etRemarks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="4"
+        android:layout_marginTop="@dimen/dim_10dp"
+        android:layout_marginBottom="@dimen/dim_10dp"
+        android:paddingTop="@dimen/dim_5dp"
+        android:paddingBottom="@dimen/dim_5dp"
+        android:hint="@string/txt_enter_description"
+        android:textColor="@color/colorBlack"
+        android:layout_below="@+id/textRemarks"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/btnUpdateTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:paddingTop="@dimen/dim_5dp"
+        android:paddingBottom="@dimen/dim_5dp"
+        android:text="@string/txt_update_ticket"
+        android:layout_below="@+id/etRemarks"
+        style="@style/button_theme"/>
+
+</RelativeLayout>

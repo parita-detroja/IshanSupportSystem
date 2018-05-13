@@ -36,6 +36,14 @@
 
     <string name="txt_create_ticket">Create Ticket</string>
 
+    <string name="txt_enter_description">Enter description</string>
+    
+    <!--Update Ticket-->
+    <string name="txt_dependency">Dependency</string>
+    <string name="txt_resolution">Resolution</string>
+    <string name="txt_remarks">Remarks</string>
+    <string name="txt_enter_remarks">Enter remarks</string>
+    <string name="txt_update_ticket">Update Ticket</string>
 
 </resources>
 

@@ -8,13 +8,13 @@ import java.util.List;
 
 public class DependencyResponse {
 
-    private List<Dependency> tblOffice;
+    private List<Dependency> tblDependency;
 
-    public List<Dependency> getTblOffice() {
-        return tblOffice;
+    public List<Dependency> getTblDependency() {
+        return tblDependency;
     }
 
-    public void setTblOffice(List<Dependency> tblOffice) {
-        this.tblOffice = tblOffice;
+    public void setTblDependency(List<Dependency> tblOffice) {
+        this.tblDependency = tblOffice;
     }
 }
