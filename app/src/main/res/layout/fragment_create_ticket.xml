@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
-            style="@style/text_large_black"/>
+            style="@style/text_large_black"
+            android:background="@drawable/shape"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -29,7 +30,8 @@
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
             style="@style/text_large_black"
-            android:layout_below="@+id/spinnerState"/>
+            android:layout_below="@+id/spinnerState"
+            android:background="@drawable/shape"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -40,7 +42,8 @@
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
             style="@style/text_large_black"
-            android:layout_below="@+id/spinnerCity"/>
+            android:layout_below="@+id/spinnerCity"
+            android:background="@drawable/shape"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -51,7 +54,8 @@
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
             style="@style/text_large_black"
-            android:layout_below="@+id/spinnerZone"/>
+            android:layout_below="@+id/spinnerZone"
+            android:background="@drawable/shape"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -62,7 +66,8 @@
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
             style="@style/text_large_black"
-            android:layout_below="@+id/spinnerClient"/>
+            android:layout_below="@+id/spinnerClient"
+            android:background="@drawable/shape"/>
 
         <Spinner
             android:paddingTop="@dimen/dim_5dp"
@@ -73,7 +78,8 @@
             android:layout_marginTop="@dimen/dim_10dp"
             android:layout_marginBottom="@dimen/dim_10dp"
             style="@style/text_large_black"
-            android:layout_below="@+id/spinnerOffice"/>
+            android:layout_below="@+id/spinnerOffice"
+            android:background="@drawable/shape"/>
 
         <EditText
             android:id="@+id/etDescription"
@@ -87,7 +93,8 @@
             android:hint="@string/hint_enter_description"
             android:textColor="@color/colorBlack"
             android:layout_below="@+id/spinnerFault"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/shape"/>
 
         <Button
             android:id="@+id/btnCreateTicket"

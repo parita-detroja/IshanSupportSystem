@@ -8,5 +8,6 @@
     android:textSize="15sp"
     android:textColor="@color/colorBlack"
     android:paddingLeft="50dp"
-    android:paddingStart="50dp">
+    android:paddingStart="50dp"
+    android:background="@drawable/shape">
 </TextView>

@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_below="@+id/expandable_history_data"
+    android:background="@drawable/shape"
+    android:padding="@dimen/dim_10dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout

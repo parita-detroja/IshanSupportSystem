@@ -78,7 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dim_10dp"
                 android:layout_marginBottom="@dimen/dim_10dp"
-                style="@style/text_large_black" />
+                style="@style/text_large_black"
+                android:background="@drawable/shape"/>
 
         </LinearLayout>
 
@@ -103,7 +104,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dim_10dp"
                 android:layout_marginBottom="@dimen/dim_10dp"
-                style="@style/text_large_black"/>
+                style="@style/text_large_black"
+                android:background="@drawable/shape"/>
 
             <TextView
                 android:id="@+id/textResolution"
@@ -119,7 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dim_10dp"
                 android:layout_marginBottom="@dimen/dim_10dp"
-                style="@style/text_large_black"/>
+                style="@style/text_large_black"
+                android:background="@drawable/shape"/>
 
         </LinearLayout>
 

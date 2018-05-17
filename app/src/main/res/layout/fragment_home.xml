@@ -28,7 +28,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="2"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:id="@+id/text_todays_open_ticket"
@@ -36,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:text="@string/txt_todays_open_ticket"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/colorWhite"/>
 
         </LinearLayout>
 
@@ -63,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="40sp"
-                android:text="2"/>
+                android:text="2"
+                android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:id="@+id/text_total_open_ticket"
@@ -71,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="20sp"
-                android:text="@string/txt_total_open_ticket"/>
+                android:text="@string/txt_total_open_ticket"
+                android:textColor="@color/colorWhite"/>
 
         </LinearLayout>
 
@@ -98,7 +102,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="40sp"
-                android:text="2"/>
+                android:text="2"
+                android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:id="@+id/text_total_dependency_ticket"
@@ -106,7 +111,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="20sp"
-                android:text="@string/txt_total_dependency_ticket"/>
+                android:text="@string/txt_total_dependency_ticket"
+                android:textColor="@color/colorWhite"/>
 
         </LinearLayout>
 
@@ -133,7 +139,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="40sp"
-                android:text="2"/>
+                android:text="2"
+                android:textColor="@color/colorWhite"/>
 
             <TextView
                 android:id="@+id/text_card_total_close_ticket"
@@ -141,7 +148,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:textSize="20sp"
-                android:text="@string/txt_total_close_ticket"/>
+                android:text="@string/txt_total_close_ticket"
+                android:textColor="@color/colorWhite"/>
 
         </LinearLayout>
 

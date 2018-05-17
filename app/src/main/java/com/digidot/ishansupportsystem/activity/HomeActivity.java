@@ -99,7 +99,9 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle(title);
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
-        fragmentTransaction.addToBackStack("");
+        if(fragment instanceof HomeFragment){
+            fragmentTransaction.addToBackStack("");
+        }
         fragmentTransaction.commit();
     }
 }

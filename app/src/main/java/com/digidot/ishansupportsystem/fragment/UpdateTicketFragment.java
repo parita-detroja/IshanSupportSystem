@@ -115,7 +115,11 @@ public class UpdateTicketFragment extends Fragment {
         Bundle bundle = this.getArguments();
         ticketId = bundle.getString(Constant.INTENT_PARAM_TICKET_ID);
         ticketNumber = bundle.getString(Constant.INTENT_PARAM_TICKET_NO);
-        dependencyCode = bundle.getString(Constant.INTENT_PARAM_TICKET_DEPENDENCY_CODE);
+        if(bundle.getString(Constant.INTENT_PARAM_TICKET_DEPENDENCY_CODE) != null){
+            dependencyCode = bundle.getString(Constant.INTENT_PARAM_TICKET_DEPENDENCY_CODE);
+        } else {
+            dependencyCode = "";
+        }
         resolutionCode = bundle.getString(Constant.INTENT_PARAM_TICKET_RESOLUTION_CODE);
         broadCategoryCode = bundle.getString(Constant.INTENT_PARAM_TICKET_BROAD_CATEGORY);
         mTextViewTicketNumber.setText(ticketNumber);

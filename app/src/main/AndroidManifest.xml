@@ -16,7 +16,8 @@
         <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +33,7 @@
             android:name=".activity.UpdateTicketActivity"
             android:label="@string/title_activity_update_ticket"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.HomeActivity"/>
     </application>
 
 </manifest>

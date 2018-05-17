@@ -43,7 +43,7 @@ public class ViewTicketFragment extends Fragment {
     private APIService mApiService;
     private SharedPreferences pref;
     private TextView mTextviewTicketNoValue, mTextviewDateValue,
-            mTextViewFaultValue, mTextviewDescriptionValue;
+            mTextViewFaultValue, mTextviewDescriptionValue, mTextViewNoData ;
     private ImageView mImageView;
     private Ticket mTicket;
     private ArrayList<String> headerList;
@@ -130,6 +130,7 @@ public class ViewTicketFragment extends Fragment {
         mTextviewDateValue = view.findViewById(R.id.textviewDateValue);
         mTextViewFaultValue = view.findViewById(R.id.textViewFaultValue);
         mTextviewDescriptionValue = view.findViewById(R.id.textviewDescriptionValue);
+        mTextViewNoData = view.findViewById(R.id.textviewNoData);
         mExpandableListView = view.findViewById(R.id.expandable_history_data);
     }
 
@@ -143,6 +144,7 @@ public class ViewTicketFragment extends Fragment {
             @Override
             public void onResponse(Call<TicketResponse> call, Response<TicketResponse> response) {
                 if (response.isSuccessful() && response.code() == 200) {
+                    mTextViewNoData.setVisibility(View.INVISIBLE);
                     TicketResponse ticketResponse = response.body();
                     if (ticketResponse != null && ticketResponse.getTblTicket().size() > 0) {
                         mTicket = ticketResponse.getTblTicket().get(0);
@@ -163,6 +165,7 @@ public class ViewTicketFragment extends Fragment {
                         ticketHistoryAdapter.notifyDataSetChanged();
                     } else {
                         Toast.makeText(mContext, "Empty data", Toast.LENGTH_LONG).show();
+                        mTextViewNoData.setVisibility(View.VISIBLE);
                     }
                 } else if (response.code() == 401) {
                     Toast.makeText(mContext, "Unauthorized", Toast.LENGTH_LONG).show();
