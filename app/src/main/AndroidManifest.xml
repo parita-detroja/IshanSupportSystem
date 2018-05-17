@@ -16,8 +16,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:windowSoftInputMode="stateAlwaysHidden"/>
+            android:label="@string/title_activity_login"/>
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
