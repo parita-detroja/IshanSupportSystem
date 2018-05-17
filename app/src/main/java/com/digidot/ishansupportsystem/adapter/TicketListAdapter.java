@@ -74,7 +74,8 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
                     bundle.putString(Constant.INTENT_PARAM_TICKET_STATUS,ticketList.get(itemPosition).getStrTicketStatus());
                     mViewTicketFragment.setArguments(bundle);
                     fragmentManager.beginTransaction()
-                            .replace(R.id.frame, mViewTicketFragment).commit();
+                            .replace(R.id.frame, mViewTicketFragment)
+                            .addToBackStack("").commit();
                 }
             });
         }

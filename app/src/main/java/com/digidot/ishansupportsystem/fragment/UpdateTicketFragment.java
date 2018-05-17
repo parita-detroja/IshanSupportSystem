@@ -206,7 +206,10 @@ public class UpdateTicketFragment extends Fragment {
                         }
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         HomeFragment mHomeFragment = new HomeFragment();
-                        fragmentManager.beginTransaction().replace(R.id.frame, mHomeFragment).commit();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.frame, mHomeFragment)
+                                .addToBackStack("")
+                                .commit();
                     } else {
                         Toast.makeText(mContext, "Success false", Toast.LENGTH_LONG).show();
                     }

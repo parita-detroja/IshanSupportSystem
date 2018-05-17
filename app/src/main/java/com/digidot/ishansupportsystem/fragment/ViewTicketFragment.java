@@ -119,7 +119,10 @@ public class ViewTicketFragment extends Fragment {
                 bundle.putString(Constant.INTENT_PARAM_TICKET_BROAD_CATEGORY, broadCategory);
                 bundle.putString(Constant.INTENT_PARAM_TICKET_RESOLUTION_CODE, resolutionCode);
                 mUpdateTicketFragment.setArguments(bundle);
-                fragmentManager.beginTransaction().replace(R.id.frame, mUpdateTicketFragment).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame, mUpdateTicketFragment)
+                        .addToBackStack("")
+                        .commit();
             }
         });
     }

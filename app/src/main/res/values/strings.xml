@@ -74,6 +74,13 @@
     <string name="txt_total_dependency_ticket">Total Dependency Ticket</string>
     <string name="txt_total_close_ticket">Total Close Ticket</string>
 
+    <!-- setting fragment -->
+    <string name="txt_change_password">Change Password</string>
+    <string name="txt_update">Update</string>
+    <string name="hind_password">Enter password</string>
+
+    <string name="txt_notification_option">Notification Option</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

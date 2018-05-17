@@ -18,6 +18,8 @@ import com.digidot.ishansupportsystem.fragment.CreateTicketFragment;
 import com.digidot.ishansupportsystem.fragment.HomeFragment;
 import com.digidot.ishansupportsystem.fragment.NotificationFragment;
 import com.digidot.ishansupportsystem.fragment.SettingFragment;
+import com.digidot.ishansupportsystem.fragment.TicketListFragment;
+import com.digidot.ishansupportsystem.fragment.ViewTicketFragment;
 import com.digidot.ishansupportsystem.util.Constant;
 
 public class HomeActivity extends AppCompatActivity {
@@ -73,7 +75,11 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.ticket:
                         Constant.FRAGMNET_TICKET=item.getTitle();
-                        loadFragment(new CreateTicketFragment(),item.getTitle());
+                        TicketListFragment mTicketListFragment = new TicketListFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constant.TICKET_STATUS, Constant.TICKET_STATUS_OPEN);
+                        mTicketListFragment.setArguments(bundle);
+                        loadFragment(mTicketListFragment,item.getTitle());
                         break;
                     case R.id.report:
                         Constant.FRAGMENT_REPORTS =item.getTitle();
@@ -99,9 +105,23 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle(title);
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
-        if(fragment instanceof HomeFragment){
-            fragmentTransaction.addToBackStack("");
-        }
+        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment mFragment = this.getSupportFragmentManager().getFragments().get(0);
+        if(mFragment instanceof HomeFragment){
+            super.onBackPressed();
+        } else if(mFragment instanceof ViewTicketFragment) {
+            TicketListFragment mTicketListFragment = new TicketListFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.TICKET_STATUS, Constant.TICKET_STATUS_OPEN);
+            mTicketListFragment.setArguments(bundle);
+            loadFragment(mTicketListFragment,getString(R.string.drawer_menu_ticket));
+        } else {
+            loadFragment(new HomeFragment(),getString(R.string.drawer_menu_home));
+        }
     }
 }

@@ -89,7 +89,10 @@ public class TicketListFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 CreateTicketFragment mCreateTicketFragment = new CreateTicketFragment();
-                fragmentManager.beginTransaction().replace(R.id.frame, mCreateTicketFragment).commit();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame, mCreateTicketFragment)
+                        .addToBackStack("")
+                        .commit();
             }
         });
 

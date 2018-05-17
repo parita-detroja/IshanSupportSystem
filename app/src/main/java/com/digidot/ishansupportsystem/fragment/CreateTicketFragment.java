@@ -533,7 +533,10 @@ public class CreateTicketFragment extends Fragment {
                     Toast.makeText(mContext,"Ticket Created",Toast.LENGTH_LONG).show();
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     HomeFragment mHomeFragment = new HomeFragment();
-                    fragmentManager.beginTransaction().replace(R.id.frame, mHomeFragment).commit();
+                    fragmentManager.beginTransaction().
+                            replace(R.id.frame, mHomeFragment)
+                            .addToBackStack("")
+                            .commit();
                 }else if(response.code()==401){
                     Toast.makeText(mContext,"Unauthorized",Toast.LENGTH_LONG).show();
                 }else if(response.code()==500){
