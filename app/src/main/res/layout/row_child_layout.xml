@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/relativeLayoutChildView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/expandable_history_data"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutStatusDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/textviewStatusDate"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_date" />
+
+        <TextView
+            android:id="@+id/textviewStatusDateValue"
+            style="@style/text_regular_black"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutTicketRemarks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutStatusDate"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/textviewTicketRemarks"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_remarks" />
+
+        <TextView
+            android:id="@+id/textviewTicketRemarksValue"
+            style="@style/text_regular_black"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutDependencyCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutTicketRemarks"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textViewDependencyCode"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_dependency_code"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewDependencyCodeValue"
+            style="@style/text_regular_black"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutResolutionCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutDependencyCode"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textviewResolutionCode"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_resolution_code"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textviewResolutionCodeValue"
+            style="@style/text_regular_black"
+            android:text="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutBroadCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayoutResolutionCode"
+        android:padding="5dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textviewBroadCategory"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_broad_category"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textviewBroadCategoryValue"
+            style="@style/text_regular_black"
+            android:text="" />
+
+    </LinearLayout>
+
+</RelativeLayout>

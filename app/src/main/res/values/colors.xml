@@ -18,4 +18,10 @@
     <color name="colorSky">@android:color/holo_blue_light</color>
     <color name="colorOffwhite">#fffeee</color>
     <color name="colorLightGray">#E8E8E8</color>
+
+    <color name="colorCardBackgroundCard1">#3949AB</color>
+    <color name="colorCardBackgroundCard2">#e53935</color>
+    <color name="colorCardBackgroundCard3">#00ACC1</color>
+    <color name="colorCardBackgroundCard4">#8E24AA</color>
+
 </resources>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.digidot.ishansupportsystem.activity.UpdateTicketActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dim_20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textTicketNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            android:text="Ticket number"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textDependency"
+                style="@style/text_update_regular_black"
+                android:textStyle="bold"
+                android:text="@string/txt_dependency"/>
+
+            <RadioGroup
+                android:id="@+id/radioDependency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_yes"
+                    android:checked="true"
+                    android:padding="5dp"/>
+
+                <RadioButton
+                    android:id="@+id/radioButtonNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_no"
+                    android:padding="5dp"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutDependencyCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textDependencyCode"
+                style="@style/text_update_regular_black"
+                android:textStyle="bold"
+                android:text="@string/txt_dependency_code"/>
+
+            <Spinner
+                android:paddingTop="@dimen/dim_5dp"
+                android:paddingBottom="@dimen/dim_5dp"
+                android:id="@+id/spinnerDependency"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dim_10dp"
+                android:layout_marginBottom="@dimen/dim_10dp"
+                style="@style/text_large_black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutResolution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textBroadCategory"
+                style="@style/text_update_regular_black"
+                android:textStyle="bold"
+                android:text="@string/txt_broad_category"/>
+
+            <Spinner
+                android:paddingTop="@dimen/dim_5dp"
+                android:paddingBottom="@dimen/dim_5dp"
+                android:id="@+id/spinnerBroadCategory"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dim_10dp"
+                android:layout_marginBottom="@dimen/dim_10dp"
+                style="@style/text_large_black"/>
+
+            <TextView
+                android:id="@+id/textResolution"
+                style="@style/text_update_regular_black"
+                android:textStyle="bold"
+                android:text="@string/txt_resolution"/>
+
+            <Spinner
+                android:paddingTop="@dimen/dim_5dp"
+                android:paddingBottom="@dimen/dim_5dp"
+                android:id="@+id/spinnerResolution"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dim_10dp"
+                android:layout_marginBottom="@dimen/dim_10dp"
+                style="@style/text_large_black"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/textRemarks"
+            style="@style/text_update_regular_black"
+            android:textStyle="bold"
+            android:text="@string/txt_remarks"/>
+
+        <EditText
+            android:id="@+id/etRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="4"
+            android:layout_marginTop="@dimen/dim_10dp"
+            android:layout_marginBottom="@dimen/dim_10dp"
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:hint="@string/txt_enter_description"
+            android:textColor="@color/colorBlack"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnUpdateTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="@dimen/dim_5dp"
+            android:paddingBottom="@dimen/dim_5dp"
+            android:text="@string/txt_update_ticket"
+            style="@style/button_theme"/>
+
+    </LinearLayout>
+
+</ScrollView>

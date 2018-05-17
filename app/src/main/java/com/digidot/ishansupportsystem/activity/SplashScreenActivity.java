@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.digidot.ishansupportsystem.R;
-import com.digidot.ishansupportsystem.retrofit.APIService;
 import com.digidot.ishansupportsystem.util.Constant;
 
 

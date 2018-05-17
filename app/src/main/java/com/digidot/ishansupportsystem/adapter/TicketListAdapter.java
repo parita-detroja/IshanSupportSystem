@@ -1,17 +1,17 @@
 package com.digidot.ishansupportsystem.adapter;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digidot.ishansupportsystem.R;
-import com.digidot.ishansupportsystem.activity.ViewTicketActivity;
+import com.digidot.ishansupportsystem.activity.HomeActivity;
+import com.digidot.ishansupportsystem.fragment.ViewTicketFragment;
 import com.digidot.ishansupportsystem.model.Ticket;
 import com.digidot.ishansupportsystem.util.Constant;
 
@@ -62,15 +62,20 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
             view.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(v.getContext(), ViewTicketActivity.class);
                     int itemPosition=getAdapterPosition();
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_ID,ticketList.get(itemPosition).getIntTicketId());
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_NO,ticketList.get(itemPosition).getStrTicketNo());
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_DATE,ticketList.get(itemPosition).getStrTicketDate());
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_FAULT,ticketList.get(itemPosition).getStrFault());
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_DESCRIPTION,ticketList.get(itemPosition).getStrDescription());
-                    intent.putExtra(Constant.INTENT_PARAM_TICKET_STATUS,ticketList.get(itemPosition).getStrTicketStatus());
-                    v.getContext().startActivity(intent);
+                    FragmentManager fragmentManager = ((HomeActivity)activity).getSupportFragmentManager();
+                    ViewTicketFragment mViewTicketFragment = new ViewTicketFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_ID,ticketList.get(itemPosition).getIntTicketId());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_NO,ticketList.get(itemPosition).getStrTicketNo());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_DATE,ticketList.get(itemPosition).getStrTicketDate());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_FAULT,ticketList.get(itemPosition).getStrFault());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_DESCRIPTION,ticketList.get(itemPosition).getStrDescription());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_STATUS,ticketList.get(itemPosition).getStrTicketStatus());
+                    mViewTicketFragment.setArguments(bundle);
+                    fragmentManager.beginTransaction()
+                            .addToBackStack("")
+                            .replace(R.id.frame, mViewTicketFragment).commit();
                 }
             });
         }

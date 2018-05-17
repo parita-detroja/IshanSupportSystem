@@ -5,12 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
@@ -122,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                         editor.commit();
                         finish();
                         editor.putBoolean(Constant.PREF_KEY_LOGIN,true).commit();
-                        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                        Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
                         startActivity(intent);
                     }else{
                         Toast.makeText(getApplicationContext(),"Error from server",Toast.LENGTH_LONG).show();
