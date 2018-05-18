@@ -205,10 +205,12 @@ public class UpdateTicketFragment extends Fragment {
                             updateTicketList.add(updateTicket.getIntStatusId());
                         }
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        HomeFragment mHomeFragment = new HomeFragment();
+                        TicketListFragment mTicketListFragment = new TicketListFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString(Constant.TICKET_STATUS, Constant.TICKET_STATUS_DEPENDENCY);
+                        mTicketListFragment.setArguments(bundle);
                         fragmentManager.beginTransaction()
-                                .replace(R.id.frame, mHomeFragment)
-                                .addToBackStack("")
+                                .replace(R.id.frame, mTicketListFragment)
                                 .commit();
                     } else {
                         Toast.makeText(mContext, "Success false", Toast.LENGTH_LONG).show();

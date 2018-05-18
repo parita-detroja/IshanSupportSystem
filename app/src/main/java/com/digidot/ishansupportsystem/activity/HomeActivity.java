@@ -105,12 +105,12 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setTitle(title);
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
-        fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
+        int count = this.getSupportFragmentManager().getBackStackEntryCount();
         Fragment mFragment = this.getSupportFragmentManager().getFragments().get(0);
         if(mFragment instanceof HomeFragment){
             super.onBackPressed();

@@ -121,7 +121,6 @@ public class ViewTicketFragment extends Fragment {
                 mUpdateTicketFragment.setArguments(bundle);
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame, mUpdateTicketFragment)
-                        .addToBackStack("")
                         .commit();
             }
         });

@@ -15,6 +15,7 @@ public class Constant {
     public static final String TICKET_STATUS_DEPENDENCY = "Dependency";
 
     public static final String PREF_KEY_USER_ID = "userId";
+    public static final String PREF_KEY_NOTIFICATION_ID = "notificationId";
     public static final String PREF_KEY_USERNAME = "username";
 
     public static final String INTENT_PARAM_TICKET_ID = "ticketId";

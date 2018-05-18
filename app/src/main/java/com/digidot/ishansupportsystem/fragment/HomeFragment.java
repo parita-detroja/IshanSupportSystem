@@ -92,7 +92,6 @@ public class HomeFragment extends Fragment {
         mTicketListFragment.setArguments(bundle);
         fragmentManager.beginTransaction()
                 .replace(R.id.frame, mTicketListFragment)
-                .addToBackStack("")
                 .commit();
     }
 }

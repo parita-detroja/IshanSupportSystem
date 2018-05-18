@@ -7,6 +7,7 @@ import com.digidot.ishansupportsystem.model.DependencyResponse;
 import com.digidot.ishansupportsystem.model.EndPoint;
 import com.digidot.ishansupportsystem.model.FaultResponse;
 import com.digidot.ishansupportsystem.model.LoginResponse;
+import com.digidot.ishansupportsystem.model.NotificationResponse;
 import com.digidot.ishansupportsystem.model.OfficeResponse;
 import com.digidot.ishansupportsystem.model.ResolutionResponse;
 import com.digidot.ishansupportsystem.model.StateResponse;
@@ -79,6 +80,10 @@ public interface APIService {
     @POST("ViewTicket")
     @FormUrlEncoded
     Call<TicketResponse> getTickets(@FieldMap Map<String, String> ticketRequest);
+
+    @POST("Notification")
+    @FormUrlEncoded
+    Call<NotificationResponse> getNotifications(@FieldMap Map<String, String> notificationRequest);
 
     @POST("ViewTicketHistory")
     @FormUrlEncoded

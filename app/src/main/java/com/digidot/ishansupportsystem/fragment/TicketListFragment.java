@@ -91,7 +91,6 @@ public class TicketListFragment extends Fragment {
                 CreateTicketFragment mCreateTicketFragment = new CreateTicketFragment();
                 fragmentManager.beginTransaction()
                         .replace(R.id.frame, mCreateTicketFragment)
-                        .addToBackStack("")
                         .commit();
             }
         });

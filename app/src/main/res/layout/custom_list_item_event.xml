@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dim_2dp"
+    android:padding="@dimen/dim_2dp"
+    android:background="@drawable/item_border">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutLeft"
+        android:layout_margin="@dimen/dim_2dp"
+        android:padding="@dimen/dim_2dp">
+
+        <TextView
+            android:id="@+id/textViewEventCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_regular_black"
+            android:textStyle="bold"
+            android:text="Score"/>
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_regular_black"
+            android:text="22-03-2018"
+            android:layout_below="@+id/textViewEventCategory"/>
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_regular_black"
+            android:text="12:20 PM"
+            android:layout_below="@+id/textViewDate"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rvCenter"
+        android:layout_width="5dp"
+        android:layout_height="90dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dim_2dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/relativeLayoutLeft"
+        android:layout_toRightOf="@+id/relativeLayoutLeft" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayoutRight"
+        android:layout_toEndOf="@+id/rvCenter"
+        android:padding="@dimen/dim_2dp"
+        android:layout_margin="@dimen/dim_2dp"
+        android:layout_toRightOf="@+id/rvCenter">
+
+        <TextView
+            android:id="@+id/textViewEventDes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_regular_black"
+            android:text="abc"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
