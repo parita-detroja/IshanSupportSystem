@@ -13,10 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.activity.HomeActivity;
+import com.digidot.ishansupportsystem.activity.MainActivity;
 import com.digidot.ishansupportsystem.adapter.TicketListAdapter;
 import com.digidot.ishansupportsystem.model.Ticket;
 import com.digidot.ishansupportsystem.model.TicketResponse;
@@ -44,6 +48,8 @@ public class TicketListFragment extends Fragment {
     private APIService mApiService;
     private SharedPreferences pref;
     private  String ticketStatus;
+    private Spinner mSpinnerTicketStatus;
+    private boolean initial  =true;
 
     public TicketListFragment() {
         // Required empty public constructor
@@ -95,11 +101,42 @@ public class TicketListFragment extends Fragment {
             }
         });
 
+        mSpinnerTicketStatus = view.findViewById(R.id.spinnerTicketStatus);
+        mSpinnerTicketStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(!initial){
+                    ticketStatus = mSpinnerTicketStatus.getSelectedItem().toString();
+                    getTickets();
+                }
+                initial = false;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        getTicketStatus();
+
         mRecyclerViewTicketList = view.findViewById(R.id.rvTicketList);
         mRecyclerViewTicketList.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(mContext,1);
         mRecyclerViewTicketList.setLayoutManager(layoutManager);
+    }
+
+    private void getTicketStatus(){
+        List<String> ticketStatusList=new ArrayList<>();
+        ticketStatusList.add(0,Constant.TICKET_STATUS_OPEN);
+        ticketStatusList.add(1,Constant.TICKET_STATUS_CLOSE);
+        ticketStatusList.add(2,Constant.TICKET_STATUS_DEPENDENCY);
+
+        ArrayAdapter dataAdapter = new ArrayAdapter(mContext, R.layout.custom_spinner_item, ticketStatusList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerTicketStatus.setAdapter(dataAdapter);
     }
 
     private void getTickets(){
