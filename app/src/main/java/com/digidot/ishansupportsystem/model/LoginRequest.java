@@ -13,6 +13,15 @@ public class LoginRequest {
     private String isViewOthers;
     private String isUpdateStatus;
     private String isActive;
+    private String Error;
+
+    public String getError() {
+        return Error;
+    }
+
+    public void setError(String error) {
+        Error = error;
+    }
 
     public String getIsCreate() {
         return isCreate;

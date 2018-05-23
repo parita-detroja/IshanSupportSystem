@@ -116,16 +116,21 @@ public class LoginActivity extends AppCompatActivity {
                 if(response.isSuccessful() && response.code()==200) {
                     LoginResponse loginResponse=response.body();
                     if(loginResponse!=null && loginResponse.getTblLogin().get(0)!=null){
-                        LoginRequest result=loginResponse.getTblLogin().get(0);
-                        editor.putString(Constant.PREF_KEY_USER_ID,result.getIntUserId());
-                        editor.putString(Constant.PREF_KEY_USERNAME,result.getUserName());
-                        editor.putString(Constant.PREF_KEY_IS_CREATE_TICKET_RIGHT,result.getIsCreate());
-                        editor.putString(Constant.PREF_KEY_IS_UPDATE_TICKET_RIGHT,result.getIsUpdateStatus());
-                        editor.commit();
-                        finish();
-                        editor.putBoolean(Constant.PREF_KEY_LOGIN,true).commit();
-                        Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
-                        startActivity(intent);
+                        if(loginResponse.getTblLogin().get(0).getError()!=null
+                                && !loginResponse.getTblLogin().get(0).getError().isEmpty()){
+                            Utils.getInstance().showDialog(LoginActivity.this,loginResponse.getTblLogin().get(0).getError());
+                        }else {
+                            LoginRequest result=loginResponse.getTblLogin().get(0);
+                            editor.putString(Constant.PREF_KEY_USER_ID,result.getIntUserId());
+                            editor.putString(Constant.PREF_KEY_USERNAME,result.getUserName());
+                            editor.putString(Constant.PREF_KEY_IS_CREATE_TICKET_RIGHT,result.getIsCreate());
+                            editor.putString(Constant.PREF_KEY_IS_UPDATE_TICKET_RIGHT,result.getIsUpdateStatus());
+                            editor.commit();
+                            finish();
+                            editor.putBoolean(Constant.PREF_KEY_LOGIN,true).commit();
+                            Intent intent=new Intent(LoginActivity.this,HomeActivity.class);
+                            startActivity(intent);
+                        }
                     }else{
                         Toast.makeText(getApplicationContext(),"Error from server",Toast.LENGTH_LONG).show();
                     }
