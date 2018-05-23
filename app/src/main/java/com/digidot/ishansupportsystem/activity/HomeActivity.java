@@ -21,6 +21,7 @@ import com.digidot.ishansupportsystem.fragment.SettingFragment;
 import com.digidot.ishansupportsystem.fragment.TicketListFragment;
 import com.digidot.ishansupportsystem.fragment.ViewTicketFragment;
 import com.digidot.ishansupportsystem.util.Constant;
+import com.wang.avi.AVLoadingIndicatorView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -28,6 +29,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private Toolbar toolbar;
     private final String TAG = "HomeActivity";
+    private AVLoadingIndicatorView mAvLoadingIndicatorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initView(){
         mNavigationView =findViewById(R.id.navigation_view);
+        mAvLoadingIndicatorView = findViewById(R.id.avi);
         toolbar = findViewById(R.id.tool_bar);
         mDrawerLayout=findViewById(R.id.drawer);
         loadFragment(new HomeFragment(),this.getResources().getString(
@@ -123,5 +126,13 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             loadFragment(new HomeFragment(),getString(R.string.drawer_menu_home));
         }
+    }
+
+    public void viewProgress(){
+        mAvLoadingIndicatorView.setVisibility(View.VISIBLE);
+    }
+
+    public void hideProgress(){
+        mAvLoadingIndicatorView.setVisibility(View.INVISIBLE);
     }
 }

@@ -150,10 +150,11 @@ public class TicketListFragment extends Fragment {
         Map<String,String> ticketFields=new HashMap<>();
         ticketFields.put("UserId",userId);
         ticketFields.put("TicketStatus",ticketStatus);
-
+        ((HomeActivity)mContext).viewProgress();
         mApiService.getTickets(ticketFields).enqueue(new Callback<TicketResponse>() {
             @Override
             public void onResponse(Call<TicketResponse> call, Response<TicketResponse> response) {
+                ((HomeActivity)mContext).hideProgress();
                 List<Ticket> ticketList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     TicketResponse ticketResponse = response.body();
