@@ -33,7 +33,6 @@ import com.digidot.ishansupportsystem.model.ZoneResponse;
 import com.digidot.ishansupportsystem.retrofit.APIService;
 import com.digidot.ishansupportsystem.retrofit.ApiUtils;
 import com.digidot.ishansupportsystem.util.Constant;
-import com.digidot.ishansupportsystem.util.SingleShotLocationProvider;
 import com.digidot.ishansupportsystem.util.Utils;
 
 import java.util.ArrayList;
@@ -520,15 +519,6 @@ public class CreateTicketFragment extends Fragment {
     }
 
     private void createTicket(String faultId,String officeId){
-
-        SingleShotLocationProvider.requestSingleUpdate(mContext,
-                new SingleShotLocationProvider.LocationCallback() {
-                    @Override
-                    public void onNewLocationAvailable(SingleShotLocationProvider.GPSCoordinates location) {
-                        Log.d("Location", "my location is " + location.toString());
-                    }
-                });
-
         Map<String,String> createTicketFields=new HashMap<>();
         createTicketFields.put("UserId",userId);
         createTicketFields.put("FaultId",faultId);
