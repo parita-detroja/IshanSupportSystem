@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         mRecyclerViewTicketList = findViewById(R.id.rvTicketList);
         mRecyclerViewTicketList.setHasFixedSize(true);
 

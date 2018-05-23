@@ -1,9 +1,13 @@
 package com.digidot.ishansupportsystem.activity;
 
+import android.support.v7.app.AppCompatActivity;
+
+import com.digidot.ishansupportsystem.activity.HomeActivity;
+import com.digidot.ishansupportsystem.retrofit.APIService;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +18,8 @@ import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.model.EndPoint;
 import com.digidot.ishansupportsystem.model.LoginRequest;
 import com.digidot.ishansupportsystem.model.LoginResponse;
-import com.digidot.ishansupportsystem.retrofit.APIService;
 import com.digidot.ishansupportsystem.retrofit.ApiUtils;
 import com.digidot.ishansupportsystem.retrofit.RetrofitClient;
-import com.digidot.ishansupportsystem.util.Constant;
 import com.digidot.ishansupportsystem.util.Utils;
 
 import java.util.HashMap;
@@ -116,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                         LoginRequest result=loginResponse.getTblLogin().get(0);
                         editor.putString(Constant.PREF_KEY_USER_ID,result.getIntUserId());
                         editor.putString(Constant.PREF_KEY_USERNAME,result.getUserName());
+                        editor.putString(Constant.PREF_KEY_IS_CREATE_TICKET_RIGHT,result.getIsCreate());
+                        editor.putString(Constant.PREF_KEY_IS_UPDATE_TICKET_RIGHT,result.getIsUpdateStatus());
                         editor.commit();
                         finish();
                         editor.putBoolean(Constant.PREF_KEY_LOGIN,true).commit();
