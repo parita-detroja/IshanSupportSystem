@@ -57,8 +57,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView(){
-
         mFloatingActionButton = findViewById(R.id.fab_chart);
+        String isCreateRight=pref.getString(Constant.PREF_KEY_IS_CREATE_TICKET_RIGHT,"False");
+        if(isCreateRight.equals("True")){
+            mFloatingActionButton.setVisibility(View.VISIBLE);
+        }else {
+            mFloatingActionButton.setVisibility(View.GONE);
+        }
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

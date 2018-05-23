@@ -134,6 +134,12 @@ public class ViewTicketFragment extends Fragment {
         mTextviewDescriptionValue = view.findViewById(R.id.textviewDescriptionValue);
         mTextViewNoData = view.findViewById(R.id.textviewNoData);
         mExpandableListView = view.findViewById(R.id.expandable_history_data);
+        String isUpdateRight=pref.getString(Constant.PREF_KEY_IS_UPDATE_TICKET_RIGHT,"False");
+        if(isUpdateRight.equals("True")){
+            mImageView.setVisibility(View.VISIBLE);
+        }else {
+            mImageView.setVisibility(View.GONE);
+        }
     }
 
     private void getTicketHistory() {
