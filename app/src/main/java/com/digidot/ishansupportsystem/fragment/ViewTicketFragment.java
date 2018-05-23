@@ -63,6 +63,8 @@ public class ViewTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view_ticket, container, false);
+        pref = mContext.getSharedPreferences("IffcoPref", 0);
+        mApiService = ApiUtils.getAPIService();
         init(view);
         Bundle bundle = this.getArguments();
         ticketId = bundle.getString(Constant.INTENT_PARAM_TICKET_ID);
@@ -78,8 +80,6 @@ public class ViewTicketFragment extends Fragment {
         if (ticketStatus.equals(Constant.TICKET_STATUS_CLOSE)) {
             mImageView.setVisibility(View.GONE);
         }
-        mApiService = ApiUtils.getAPIService();
-        pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID, "0");
         Log.e("User id", userId);
         getTicketHistory();

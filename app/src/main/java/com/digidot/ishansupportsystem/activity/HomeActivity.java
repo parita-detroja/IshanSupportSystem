@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initView(){
         mNavigationView =findViewById(R.id.navigation_view);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar = findViewById(R.id.tool_bar);
         mDrawerLayout=findViewById(R.id.drawer);
         loadFragment(new HomeFragment(),this.getResources().getString(
                 R.string.drawer_menu_home));
