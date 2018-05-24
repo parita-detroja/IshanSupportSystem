@@ -3,6 +3,7 @@ package com.digidot.ishansupportsystem.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
+import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.model.Broad;
 import com.digidot.ishansupportsystem.model.BroadResponse;
 import com.digidot.ishansupportsystem.model.Dependency;
@@ -179,9 +181,11 @@ public class UpdateTicketFragment extends Fragment {
     }
 
     private void updateTicket() {
+        Location mLocation = ((HomeActivity)mContext).getLocation();
         Map<String, String> updateFields = new HashMap<>();
         updateFields.put("UserId", userId);
         updateFields.put("TicketId", ticketId);
+        updateFields.put("Image", "");
         if (mRadioGroupDependency.getCheckedRadioButtonId() == R.id.radioButtonYes) {
             updateFields.put("DependencyId", dependencyResponse.getTblDependency().
                     get((int) mSpinnerDependency.getSelectedItemId()).getIntDependencyId());
@@ -190,6 +194,13 @@ public class UpdateTicketFragment extends Fragment {
             updateFields.put("DependencyId", "");
             updateFields.put("ResolutionId", resolutionResponse.getTblResolution().
                     get((int) mSpinnerResolution.getSelectedItemId()).getIntResolutionId());
+        }
+        if(mLocation != null){
+            updateFields.put("Latitude",mLocation.getLatitude()+"");
+            updateFields.put("Longitude",mLocation.getLongitude()+"");
+        }else {
+            updateFields.put("Latitude","0.00");
+            updateFields.put("Longitude","0.00");
         }
         updateFields.put("Remarks", mEditTextRemarks.getText().toString());
 

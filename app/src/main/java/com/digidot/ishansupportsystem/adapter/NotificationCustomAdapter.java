@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.model.Notification;
-import com.digidot.ishansupportsystem.util.Utils;
 
 import java.util.List;
 

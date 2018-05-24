@@ -26,7 +26,6 @@ import com.digidot.ishansupportsystem.util.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;

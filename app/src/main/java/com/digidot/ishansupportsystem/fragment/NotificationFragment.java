@@ -1,9 +1,7 @@
 package com.digidot.ishansupportsystem.fragment;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,27 +11,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.adapter.NotificationCustomAdapter;
-import com.digidot.ishansupportsystem.adapter.TicketListAdapter;
 import com.digidot.ishansupportsystem.model.Notification;
 import com.digidot.ishansupportsystem.model.NotificationResponse;
 import com.digidot.ishansupportsystem.model.Ticket;
-import com.digidot.ishansupportsystem.model.TicketResponse;
 import com.digidot.ishansupportsystem.retrofit.APIService;
 import com.digidot.ishansupportsystem.retrofit.ApiUtils;
 import com.digidot.ishansupportsystem.util.Constant;
 import com.digidot.ishansupportsystem.util.Utils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,8 +33,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 public class NotificationFragment extends Fragment{
 

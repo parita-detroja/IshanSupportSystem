@@ -20,7 +20,6 @@ import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.activity.HomeActivity;
-import com.digidot.ishansupportsystem.activity.MainActivity;
 import com.digidot.ishansupportsystem.adapter.TicketListAdapter;
 import com.digidot.ishansupportsystem.model.Ticket;
 import com.digidot.ishansupportsystem.model.TicketResponse;
@@ -150,6 +149,13 @@ public class TicketListFragment extends Fragment {
         Map<String,String> ticketFields=new HashMap<>();
         ticketFields.put("UserId",userId);
         ticketFields.put("TicketStatus",ticketStatus);
+        if(ticketStatus.equals(Constant.TICKET_STATUS_CLOSE)){
+            ticketFields.put("StartDate","15/05/18");
+            ticketFields.put("EndDate","24/05/18");
+        }else {
+            ticketFields.put("StartDate","");
+            ticketFields.put("EndDate","");
+        }
         ((HomeActivity)mContext).viewProgress();
         mApiService.getTickets(ticketFields).enqueue(new Callback<TicketResponse>() {
             @Override

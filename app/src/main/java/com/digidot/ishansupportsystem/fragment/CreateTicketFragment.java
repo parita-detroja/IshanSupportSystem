@@ -3,6 +3,7 @@ package com.digidot.ishansupportsystem.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
+import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.model.City;
 import com.digidot.ishansupportsystem.model.CityResponse;
 import com.digidot.ishansupportsystem.model.Client;
@@ -519,11 +521,20 @@ public class CreateTicketFragment extends Fragment {
     }
 
     private void createTicket(String faultId,String officeId){
+        Location mLocation = ((HomeActivity)mContext).getLocation();
         Map<String,String> createTicketFields=new HashMap<>();
         createTicketFields.put("UserId",userId);
         createTicketFields.put("FaultId",faultId);
         createTicketFields.put("OfficeId",officeId);
         createTicketFields.put("Description",mEditTextDescription.getText().toString());
+
+        if(mLocation != null){
+            createTicketFields.put("Latitude",mLocation.getLatitude()+"");
+            createTicketFields.put("Longitude",mLocation.getLongitude()+"");
+        }else {
+            createTicketFields.put("Latitude","0.00");
+            createTicketFields.put("Longitude","0.00");
+        }
 
         mApiService.createTicket(createTicketFields).enqueue(new Callback<Void>() {
             @Override

@@ -3,6 +3,7 @@
     package="com.digidot.ishansupportsystem">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"/>
@@ -24,14 +24,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.CreateTicketActivity"
-            android:label="@string/title_activity_create_ticket"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".activity.UpdateTicketActivity"
-            android:label="@string/title_activity_update_ticket"
-            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activity.HomeActivity"/>
     </application>
 

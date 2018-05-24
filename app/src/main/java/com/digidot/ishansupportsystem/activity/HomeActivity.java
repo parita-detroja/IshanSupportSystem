@@ -1,8 +1,15 @@
 package com.digidot.ishansupportsystem.activity;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +20,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.fragment.HomeFragment;
@@ -22,7 +30,7 @@ import com.digidot.ishansupportsystem.fragment.TicketListFragment;
 import com.digidot.ishansupportsystem.fragment.ViewTicketFragment;
 import com.digidot.ishansupportsystem.util.Constant;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements LocationListener {
 
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
@@ -30,11 +38,15 @@ public class HomeActivity extends AppCompatActivity {
     private final String TAG = "HomeActivity";
     private ProgressBar mProgressBar;
 
+    private Location mLocation;
+
+    private LocationManager mLocationManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        checkLocationPermission();
         initView();
     }
 
@@ -133,5 +145,83 @@ public class HomeActivity extends AppCompatActivity {
 
     public void hideProgress(){
         mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    public void getCurrentLocationFromLocationManager() {
+        try {
+            mLocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            assert mLocationManager != null;
+            mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 5, this);
+            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, this);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.e("Location","Fetched");
+        mLocation = location;
+        mLocationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(HomeActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if (requestCode == 0) {
+
+            for (String permission : permissions) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
+                    Log.e("denied", permission);
+                } else {
+                    if (ActivityCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+                        Log.e("allowed", permission);
+                        getCurrentLocationFromLocationManager();
+                    } else {
+                        Log.e("set to never ask again", permission);
+                    }
+                }
+            }
+        }
+    }
+
+    private void checkLocationPermission(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestLocationPermission();
+
+        } else {
+            getCurrentLocationFromLocationManager();
+            Log.i("Location",
+                    "CAMERA permission has already been granted. Displaying camera preview.");
+        }
+    }
+
+    private void requestLocationPermission(){
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                0);
+    }
+
+    public Location getLocation(){
+        if(mLocation != null){
+            return mLocation;
+        }
+        Toast.makeText(getApplicationContext(),"Location not available",Toast.LENGTH_SHORT).show();
+        return null;
     }
 }
