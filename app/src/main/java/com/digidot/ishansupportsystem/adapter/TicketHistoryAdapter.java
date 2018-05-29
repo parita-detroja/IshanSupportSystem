@@ -1,15 +1,20 @@
 package com.digidot.ishansupportsystem.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.model.Ticket;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,11 +24,13 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
     private LayoutInflater mLayoutInflater;
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Ticket>> childList;
+    private Context mContext;
 
     public TicketHistoryAdapter(Context mContext, ArrayList<String> headerList, HashMap<String, ArrayList<Ticket>> childList) {
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.headerList = headerList;
         this.childList = childList;
+        this.mContext=mContext;
     }
 
     @Override
@@ -108,8 +115,18 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
         if (ticket.getStrDependency().equals("")) {
             viewHolderChild.mLinearLayoutBroadCategory.setVisibility(View.VISIBLE);
             viewHolderChild.mLinearLayoutResolutionCode.setVisibility(View.VISIBLE);
+            viewHolderChild.mLinearLayoutCaptureImage.setVisibility(View.VISIBLE);
             viewHolderChild.mTextviewResolutionCodeValue.setText(ticket.getStrResolutionCode());
             viewHolderChild.mTextviewBroadCategoryValue.setText(ticket.getStrBroadCategory());
+            if(ticket.getStrImage()!=null && ticket.getStrImage().equals("")){
+                viewHolderChild.mImageViewCaptureImage.setVisibility(View.VISIBLE);
+                viewHolderChild.mTextviewNoimage.setVisibility(View.GONE);
+                Picasso.with(mContext).load(ticket.getStrImage()).into(viewHolderChild.mImageViewCaptureImage);
+            }else{
+                viewHolderChild.mImageViewCaptureImage.setVisibility(View.GONE);
+                viewHolderChild.mTextviewNoimage.setVisibility(View.VISIBLE);
+            }
+
         } else {
             viewHolderChild.mLinearLayoutDependencyCode.setVisibility(View.VISIBLE);
             viewHolderChild.mTextViewDependencyCodeValue.setText(ticket.getStrDependency());
@@ -137,10 +154,13 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
         private TextView mTextViewDependencyCodeValue;
         private TextView mTextviewResolutionCodeValue;
         private TextView mTextviewBroadCategoryValue;
+        private ImageView mImageViewCaptureImage;
+        private TextView mTextviewNoimage;
 
         private LinearLayout mLinearLayoutDependencyCode;
         private LinearLayout mLinearLayoutResolutionCode;
         private LinearLayout mLinearLayoutBroadCategory;
+        private LinearLayout mLinearLayoutCaptureImage;
 
 
         public ViewHolderChild(View view) {
@@ -149,10 +169,13 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
             mTextViewDependencyCodeValue = view.findViewById(R.id.textViewDependencyCodeValue);
             mTextviewResolutionCodeValue = view.findViewById(R.id.textviewResolutionCodeValue);
             mTextviewBroadCategoryValue = view.findViewById(R.id.textviewBroadCategoryValue);
+            mImageViewCaptureImage=view.findViewById(R.id.imageViewCaptureImage);
+            mTextviewNoimage=view.findViewById(R.id.textNoImage);
 
             mLinearLayoutDependencyCode = view.findViewById(R.id.linearLayoutDependencyCode);
             mLinearLayoutResolutionCode = view.findViewById(R.id.linearLayoutResolutionCode);
             mLinearLayoutBroadCategory = view.findViewById(R.id.linearLayoutBroadCategory);
+            mLinearLayoutCaptureImage = view.findViewById(R.id.linearLayoutCaptureImage);
         }
     }
 }

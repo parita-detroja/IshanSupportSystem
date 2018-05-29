@@ -2,10 +2,13 @@ package com.digidot.ishansupportsystem.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -28,6 +31,7 @@ import com.digidot.ishansupportsystem.fragment.NotificationFragment;
 import com.digidot.ishansupportsystem.fragment.SettingFragment;
 import com.digidot.ishansupportsystem.fragment.TicketListFragment;
 import com.digidot.ishansupportsystem.fragment.ViewTicketFragment;
+import com.digidot.ishansupportsystem.service.NotificationService;
 import com.digidot.ishansupportsystem.util.Constant;
 
 public class HomeActivity extends AppCompatActivity implements LocationListener {
@@ -37,6 +41,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private Toolbar toolbar;
     private final String TAG = "HomeActivity";
     private ProgressBar mProgressBar;
+    private SharedPreferences pref;
+    int count =0;
 
     private Location mLocation;
 
@@ -46,11 +52,18 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        checkLocationPermission();
+        pref=getApplicationContext().getSharedPreferences("IffcoPref",0);
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            checkLocationPermission();
+        } else{
+            getCurrentLocationFromLocationManager();
+        }
         initView();
     }
 
     private void initView(){
+        Intent intent=new Intent(HomeActivity.this, NotificationService.class);
+        startService(intent);
         mNavigationView =findViewById(R.id.navigation_view);
         mProgressBar = findViewById(R.id.progress_bar);
         toolbar = findViewById(R.id.tool_bar);
@@ -84,27 +97,23 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                 int id = item.getItemId();
                 switch (id){
                     case R.id.home:
-                        Constant.FRAGMNET_HOME=item.getTitle();
+                        Constant.FRAGMNET_HOME=item.getTitle().toString();
                         loadFragment(new HomeFragment(),item.getTitle());
                         break;
                     case R.id.ticket:
-                        Constant.FRAGMNET_TICKET=item.getTitle();
+                        Constant.FRAGMNET_TICKET_LIST=item.getTitle().toString();
                         TicketListFragment mTicketListFragment = new TicketListFragment();
                         Bundle bundle = new Bundle();
                         bundle.putString(Constant.TICKET_STATUS, Constant.TICKET_STATUS_OPEN);
                         mTicketListFragment.setArguments(bundle);
                         loadFragment(mTicketListFragment,item.getTitle());
                         break;
-                    case R.id.report:
-                        Constant.FRAGMENT_REPORTS =item.getTitle();
-                        //loadFragment(new HomeFragment(),item.getTitle());
-                        break;
                     case R.id.notifications:
-                        Constant.FRAGMNET_NOTIFICATIONS=item.getTitle();
+                        Constant.FRAGMNET_NOTIFICATIONS=item.getTitle().toString();
                         loadFragment(new NotificationFragment(),item.getTitle());
                         break;
                     case R.id.settings:
-                        Constant.FRAGMNET_SETTINGS=item.getTitle();
+                        Constant.FRAGMNET_SETTINGS=item.getTitle().toString();
                         loadFragment(new SettingFragment(),item.getTitle());
                         break;
                     default:
@@ -119,23 +128,23 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         toolbar.setTitle(title);
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame,fragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
     @Override
     public void onBackPressed() {
-        int count = this.getSupportFragmentManager().getBackStackEntryCount();
-        Fragment mFragment = this.getSupportFragmentManager().getFragments().get(0);
-        if(mFragment instanceof HomeFragment){
+        if(Constant.CURRENT_LOADED_FRAGMENT.equals(Constant.FRAGMNET_HOME)){
+            if(count==1){
+                count=0;
+                this.finish();
+                pref.edit().putBoolean(Constant.PREF_KEY_LOGIN,false).commit();
+            }else{
+                Toast.makeText(this,"Touch again to exit",Toast.LENGTH_LONG).show();
+                count++;
+            }
+        }else {
             super.onBackPressed();
-        } else if(mFragment instanceof ViewTicketFragment) {
-            TicketListFragment mTicketListFragment = new TicketListFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString(Constant.TICKET_STATUS, Constant.TICKET_STATUS_OPEN);
-            mTicketListFragment.setArguments(bundle);
-            loadFragment(mTicketListFragment,getString(R.string.drawer_menu_ticket));
-        } else {
-            loadFragment(new HomeFragment(),getString(R.string.drawer_menu_home));
         }
     }
 
@@ -202,6 +211,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
     private void checkLocationPermission(){
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+                        this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission();
 
@@ -213,7 +224,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
 
     private void requestLocationPermission(){
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.CAMERA},
                 0);
     }
 
@@ -223,5 +235,21 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         }
         Toast.makeText(getApplicationContext(),"Location not available",Toast.LENGTH_SHORT).show();
         return null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        pref.edit().putBoolean(Constant.PREF_KEY_LOGIN,false).commit();
+        super.onDestroy();
+     }
+
+    @Override
+    protected void onStop() {
+        pref.edit().putBoolean(Constant.PREF_KEY_LOGIN,false).commit();
+        super.onStop();
+    }
+
+    public void setToolbarTitle(String title){
+        toolbar.setTitle(title);
     }
 }

@@ -31,6 +31,7 @@
     <string name="ticket_dependency_code">Dependency Code: </string>
     <string name="ticket_resolution_code">Resolution Code : </string>
     <string name="ticket_broad_category">Broad Category : </string>
+    <string name="ticket_capture_image">Captured Image : </string>
     <string name="ticket_status">Status : </string>
     <string name="ticket_remarks">Remarks : </string>
 
@@ -51,6 +52,7 @@
     <string name="txt_remarks">Remarks</string>
     <string name="txt_enter_remarks">Enter remarks</string>
     <string name="txt_update_ticket">Update Ticket</string>
+    <string name="txt_capture_image">Capture Image</string>
     <string name="txt_yes">Yes</string>
     <string name="txt_no">No</string>
     <string name="hint_enter_username">Enter Username</string>
@@ -84,6 +86,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="from_date">From Date :</string>
+    <string name="to_date">To Date :</string>
+
+    <string name="txt_apply">Apply</string>
 
 </resources>
 

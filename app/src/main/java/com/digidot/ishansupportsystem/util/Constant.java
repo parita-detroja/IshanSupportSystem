@@ -8,13 +8,16 @@ package com.digidot.ishansupportsystem.util;
 public class Constant {
 
     public static final String PREF_KEY_NOTIFICATION_ID = "notificationId";
-    public static CharSequence FRAGMNET_HOME = "Home";
-    public static CharSequence FRAGMNET_NOTIFICATIONS = "Notifications";
-    public static CharSequence FRAGMNET_TICKET = "Ticket";
-    public static CharSequence FRAGMENT_REPORTS = "Reports";
-    public static CharSequence FRAGMNET_SETTINGS = "Settings";
+    public static String FRAGMNET_HOME = "Home";
+    public static String FRAGMNET_NOTIFICATIONS = "Notifications";
+    public static String FRAGMNET_TICKET_LIST = "TicketList";
+    public static String FRAGMNET_TICKET_CREATE = "TicketCreate";
+    public static String FRAGMNET_TICKET_UPDATE = "TicketUpdate";
+    public static String FRAGMNET_TICKET_VIEW = "TicketView";
+    public static String FRAGMNET_SETTINGS = "Settings";
 
     public static final String TICKET_STATUS = "ticket_status";
+    public static final String PREF_KEY_NOTIFICATION_ACTIVATION_KEY="notificationActivationFlag";
 
     // Splash screen timer
     public static int SPLASH_TIME_OUT = 3000;
@@ -90,5 +93,8 @@ public class Constant {
     public static final String INTENT_PARAM_OPT_C="optC";
     public static final String INTENT_PARAM_OPT_D="optD";
 
-    public static String CURRENT_LOADED_FRAGMENT="Home";
+
+    public static String CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_HOME;
+
+
 }

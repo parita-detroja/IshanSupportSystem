@@ -21,6 +21,15 @@ public class Ticket {
     private String strDependency;
     private String strDependencyCode;
     private String strBroadCategory;
+    private String strImage;
+
+    public String getStrImage() {
+        return strImage;
+    }
+
+    public void setStrImage(String strImage) {
+        this.strImage = strImage;
+    }
 
     public String getStrDependencyCode() {
         return strDependencyCode;

@@ -109,4 +109,34 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayoutCaptureImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_below="@id/linearLayoutBroadCategory"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textCaptureImage"
+            style="@style/text_regular_black"
+            android:textStyle="bold"
+            android:text="@string/ticket_capture_image"/>
+
+        <ImageView
+            android:id="@+id/imageViewCaptureImage"
+            android:layout_width="250px"
+            android:layout_height="280px"
+            android:scaleType="fitXY"
+            android:padding="1dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textNoImage"
+            style="@style/text_regular_black"
+            android:text="@string/ticket_no_data"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
 </RelativeLayout>

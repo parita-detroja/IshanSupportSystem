@@ -75,6 +75,7 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
                     mViewTicketFragment.setArguments(bundle);
                     fragmentManager.beginTransaction()
                             .replace(R.id.frame, mViewTicketFragment)
+                            .addToBackStack(null)
                             .commit();
                 }
             });

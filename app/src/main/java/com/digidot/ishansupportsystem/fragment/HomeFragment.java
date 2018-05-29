@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.digidot.ishansupportsystem.R;
+import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.util.Constant;
 
 public class HomeFragment extends Fragment {
@@ -34,6 +35,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        Constant.CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_HOME;
+        ((HomeActivity) getActivity()).setToolbarTitle(Constant.FRAGMNET_HOME.toString());
         initView(view);
         return view;
     }
@@ -92,6 +95,7 @@ public class HomeFragment extends Fragment {
         mTicketListFragment.setArguments(bundle);
         fragmentManager.beginTransaction()
                 .replace(R.id.frame, mTicketListFragment)
+                .addToBackStack(null)
                 .commit();
     }
 }

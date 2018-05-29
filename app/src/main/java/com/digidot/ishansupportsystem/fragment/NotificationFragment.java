@@ -1,7 +1,10 @@
 package com.digidot.ishansupportsystem.fragment;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
@@ -37,15 +41,12 @@ import retrofit2.Response;
 public class NotificationFragment extends Fragment{
 
     private Context mContext;
-    static final int PICK_FILTER_REQUEST = 1;
-    private Button btnDateTime;
-    private Button btnCategory;
     RecyclerView recyclerView;
-    List<Notification> notificationList;
     private String userId = "0";
-    private String notificationId = "0";
     private SharedPreferences pref;
     private APIService mApiService;
+    private ImageView btnRefresh;
+    boolean refreshFlag=false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,18 +58,27 @@ public class NotificationFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_notification, container, false);
+        Constant.CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_NOTIFICATIONS;
+        ((HomeActivity) getActivity()).setToolbarTitle(Constant.FRAGMNET_NOTIFICATIONS.toString());
         mApiService = ApiUtils.getAPIService();
         pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID, "0");
         Log.e("User id", userId);
-        notificationId = pref.getString(Constant.PREF_KEY_NOTIFICATION_ID, "0");
+        String notificationId = pref.getString(Constant.PREF_KEY_NOTIFICATION_ID, "0");
         Log.e("User id", notificationId);
         recyclerView = (RecyclerView)view.findViewById(R.id.rvNotificationTickets);
+        btnRefresh= view.findViewById(R.id.btnRefresh);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(),1);
         recyclerView.setLayoutManager(layoutManager);
-        getNotifications();
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refreshNotificationData();
+            }
+        });
+        getNotifications(notificationId);
         return view;
     }
 
@@ -78,14 +88,19 @@ public class NotificationFragment extends Fragment{
         mContext = context;
     }
 
+    private void refreshNotificationData(){
+        refreshFlag=true;
+        getNotifications(pref.getString(Constant.PREF_KEY_NOTIFICATION_ID,"0"));
+
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
     }
 
 
-    private void getNotifications(){
-
+    private void getNotifications(String notificationId){
         Map<String,String> notificationFields=new HashMap<>();
         notificationFields.put("UserId",userId);
         notificationFields.put("NotificationId",notificationId);
@@ -93,14 +108,24 @@ public class NotificationFragment extends Fragment{
         mApiService.getNotifications(notificationFields).enqueue(new Callback<NotificationResponse>() {
             @Override
             public void onResponse(Call<NotificationResponse> call, Response<NotificationResponse> response) {
-                List<Ticket> ticketList = new ArrayList<>();
                 if(response.isSuccessful() && response.code()==200) {
                     NotificationResponse notificationResponse = response.body();
-                    if(notificationResponse!=null && notificationResponse.getTblNotifications().size()> 0){
-                        NotificationCustomAdapter adapter = new NotificationCustomAdapter((
-                                HomeActivity) mContext, notificationResponse.getTblNotifications());
-                        recyclerView.setAdapter(adapter);
-                    }else{
+                    if(notificationResponse!=null){
+                        if(refreshFlag){
+                            NotificationCustomAdapter notificationCustomAdapter =(NotificationCustomAdapter) recyclerView.getAdapter();
+                            notificationCustomAdapter.refreshListData(notificationResponse.getTblNotifications());
+                            refreshFlag=false;
+                            Toast.makeText(getActivity(),"Refreshed notification data",Toast.LENGTH_LONG).show();
+                        }else{
+                            NotificationCustomAdapter adapter = new NotificationCustomAdapter((
+                                    HomeActivity) mContext, notificationResponse.getTblNotifications());
+                            recyclerView.setAdapter(adapter);
+                        }
+                        if(notificationResponse.getTblNotifications().size()>0){
+                            Notification notification=notificationResponse.getTblNotifications().get(notificationResponse.getTblNotifications().size()-1);
+                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID,notification.getIntNotificationId()).commit();
+                        }
+                     }else{
                         Toast.makeText(mContext,"Empty data",Toast.LENGTH_LONG).show();
                     }
                 }else if(response.code()==401){
@@ -118,4 +143,26 @@ public class NotificationFragment extends Fragment{
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        IntentFilter mIntentFilter=new IntentFilter("RefreshAction");
+        getActivity().registerReceiver(broadcastReceiver, mIntentFilter);
+    }
+
+    @Override
+    public void onPause() {
+        getActivity().unregisterReceiver(broadcastReceiver);
+        super.onPause();
+    }
+
+    BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals("RefreshAction")){
+                refreshNotificationData();
+            }
+        }
+    };
 }

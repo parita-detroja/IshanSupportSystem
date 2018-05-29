@@ -91,6 +91,8 @@ public class CreateTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_ticket, container, false);
+        Constant.CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_TICKET_CREATE;
+        ((HomeActivity) getActivity()).setToolbarTitle(Constant.FRAGMNET_TICKET_CREATE.toString());
         mApiService= ApiUtils.getAPIService();
         SharedPreferences pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID,"0");

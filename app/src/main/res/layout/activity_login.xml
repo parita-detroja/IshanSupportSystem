@@ -21,7 +21,7 @@
             android:src="@drawable/logo" />
 
         <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
+      <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -35,13 +35,12 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgViewAppLogo"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/edit_text_line_style"
                 android:hint="@string/hint_enter_username" />
 
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
+      <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -54,12 +53,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/edittextUsername"
-                android:background="@drawable/edit_text_line_style"
                 android:hint="@string/hint_enter_password"
                 android:inputType="textPassword"
                 android:textColorHint="@color/colorGray" />
 
-        </android.support.design.widget.TextInputLayout>
+       </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btnLogin"

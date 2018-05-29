@@ -44,7 +44,7 @@ public class Utils {
     public String getStrDateFromEpocTime(long epoctime){
         Log.i(TAG,"Epoctime = "+epoctime);
         Date date = new Date(epoctime);
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
         String strDate = format.format(date);
         Log.i(TAG,"Date = "+strDate);
         return strDate;
@@ -54,7 +54,7 @@ public class Utils {
         long epoctime=0;
         try {
             Log.i(TAG,"Date = "+strDate);
-            SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MMM-yyyy");
             Date date = formatter1.parse(strDate);
             epoctime=date.getTime();
             Log.i(TAG,"Epoctime = "+epoctime);
@@ -86,5 +86,10 @@ public class Utils {
         if (progressDialog!=null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
+    }
+
+    public String getCurrentDate(){
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        return df.format(new Date());
     }
 }

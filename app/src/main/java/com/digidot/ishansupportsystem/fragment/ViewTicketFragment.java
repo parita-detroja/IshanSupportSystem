@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.digidot.ishansupportsystem.R;
+import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.adapter.TicketHistoryAdapter;
 import com.digidot.ishansupportsystem.model.Ticket;
 import com.digidot.ishansupportsystem.model.TicketResponse;
@@ -62,6 +63,8 @@ public class ViewTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_view_ticket, container, false);
+        Constant.CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_TICKET_VIEW;
+        ((HomeActivity) getActivity()).setToolbarTitle(Constant.FRAGMNET_TICKET_VIEW.toString());
         pref = mContext.getSharedPreferences("IffcoPref", 0);
         mApiService = ApiUtils.getAPIService();
         init(view);

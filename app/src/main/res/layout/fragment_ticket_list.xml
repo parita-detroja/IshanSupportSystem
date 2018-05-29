@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
+    android:layout_margin="@dimen/dim_5dp"
     android:layout_height="match_parent"
     android:background="@color/colorLightGray">
 
@@ -18,13 +19,107 @@
         android:background="@drawable/shape"
         android:padding="@dimen/dim_10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayoutDateFilter"
+        android:layout_below="@+id/spinnerTicketStatus"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/textViewFromDate"
+                style="@style/text_regular_black"
+                android:paddingTop="@dimen/dim_10dp"
+                android:paddingBottom="@dimen/dim_10dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from_date"/>
+
+            <EditText
+                android:layout_weight="0.7"
+                android:id="@+id/editTextFromDate"
+                style="@style/text_regular_black"
+                android:paddingTop="@dimen/dim_10dp"
+                android:paddingBottom="@dimen/dim_10dp"
+                android:textStyle="bold"
+                android:enabled="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_weight="0.1"
+                android:id="@+id/imgViewFromDate"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="@dimen/dim_2dp"
+                android:src="@drawable/datetime"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="0.2"
+                android:id="@+id/textViewToDate"
+                style="@style/text_regular_black"
+                android:paddingTop="@dimen/dim_10dp"
+                android:paddingBottom="@dimen/dim_10dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/to_date"/>
+
+            <EditText
+                android:id="@+id/editTextToDate"
+                style="@style/text_regular_black"
+                android:layout_weight="0.7"
+                android:paddingTop="@dimen/dim_10dp"
+                android:paddingBottom="@dimen/dim_10dp"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:enabled="false"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_weight="0.1"
+                android:id="@+id/imgViewToDate"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/datetime"
+                android:padding="@dimen/dim_2dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:paddingTop="@dimen/dim_2dp"
+            android:paddingBottom="@dimen/dim_2dp"
+            android:text="@string/txt_apply"
+            style="@style/button_theme"/>
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvTicketList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/dim_2dp"
         android:layout_margin="@dimen/dim_5dp"
-        android:layout_below="@+id/spinnerTicketStatus" />
+        android:layout_below="@+id/linearLayoutDateFilter" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_chart"

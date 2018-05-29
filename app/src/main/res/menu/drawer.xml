@@ -14,11 +14,6 @@
             android:title="@string/drawer_menu_ticket"/>
 
         <item
-            android:id="@+id/report"
-            android:checked="false"
-            android:title="@string/drawer_menu_reports"/>
-
-        <item
             android:id="@+id/notifications"
             android:checked="false"
             android:title="@string/drawer_menu_notifications"/>

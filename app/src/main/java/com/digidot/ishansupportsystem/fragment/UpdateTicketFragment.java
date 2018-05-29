@@ -2,11 +2,17 @@ package com.digidot.ishansupportsystem.fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -37,6 +45,7 @@ import com.digidot.ishansupportsystem.retrofit.ApiUtils;
 import com.digidot.ishansupportsystem.util.Constant;
 import com.digidot.ishansupportsystem.util.Utils;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +54,8 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 public class UpdateTicketFragment extends Fragment {
 
@@ -56,12 +67,17 @@ public class UpdateTicketFragment extends Fragment {
     private RadioGroup mRadioGroupDependency;
     private LinearLayout mLinearLayoutDependency;
     private LinearLayout mLinearLayoutResolution;
+    private LinearLayout mLinearLayoutCaptureImage;
     private TextView mTextViewTicketNumber;
+    private ImageView mBtnCaptureImage;
+    private LinearLayout mLinearLayoutRoot;
+    private ImageView mImageViewCaptureImage;
 
     private RadioButton mRadioButtonYes;
     private RadioButton mRadioButtonNo;
 
     private APIService mApiService;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private String userId = "";
     private String ticketId = "";
@@ -90,6 +106,8 @@ public class UpdateTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_update_ticket, container, false);
+        Constant.CURRENT_LOADED_FRAGMENT=Constant.FRAGMNET_TICKET_UPDATE;
+        ((HomeActivity) getActivity()).setToolbarTitle(Constant.FRAGMNET_TICKET_UPDATE.toString());
         SharedPreferences pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID, "0");
         Log.e("User id", userId);
@@ -128,11 +146,13 @@ public class UpdateTicketFragment extends Fragment {
         if (dependencyCode.isEmpty()) {
             mRadioButtonNo.setChecked(true);
             mLinearLayoutResolution.setVisibility(View.VISIBLE);
+            mLinearLayoutCaptureImage.setVisibility(View.VISIBLE);
             mLinearLayoutDependency.setVisibility(View.GONE);
         } else {
             mRadioButtonYes.setChecked(true);
             mLinearLayoutDependency.setVisibility(View.VISIBLE);
             mLinearLayoutResolution.setVisibility(View.GONE);
+            mLinearLayoutCaptureImage.setVisibility(View.GONE);
         }
     }
 
@@ -143,21 +163,34 @@ public class UpdateTicketFragment extends Fragment {
         mSpinnerBroadCategory = view.findViewById(R.id.spinnerBroadCategory);
         mLinearLayoutDependency = view.findViewById(R.id.linearLayoutDependencyCode);
         mLinearLayoutResolution = view.findViewById(R.id.linearLayoutResolution);
+        mLinearLayoutCaptureImage=view.findViewById(R.id.linearLayoutCaptureImage);
         mEditTextRemarks = view.findViewById(R.id.etRemarks);
         mRadioGroupDependency = view.findViewById(R.id.radioDependency);
         mRadioButtonYes = view.findViewById(R.id.radioButtonYes);
         mRadioButtonNo = view.findViewById(R.id.radioButtonNo);
         Button mButtonUpdateTicket = view.findViewById(R.id.btnUpdateTicket);
+        mLinearLayoutRoot=view.findViewById(R.id.rootLinearLayout);
+        mBtnCaptureImage = view.findViewById(R.id.btnCaptureImage);
+        mImageViewCaptureImage = view.findViewById(R.id.imageViewCaptureImage);
         mRadioGroupDependency.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if (checkedId == R.id.radioButtonYes) {
                     mLinearLayoutDependency.setVisibility(View.VISIBLE);
                     mLinearLayoutResolution.setVisibility(View.GONE);
+                    mLinearLayoutCaptureImage.setVisibility(View.GONE);
                 } else {
                     mLinearLayoutResolution.setVisibility(View.VISIBLE);
                     mLinearLayoutDependency.setVisibility(View.GONE);
+                    mLinearLayoutCaptureImage.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+        mBtnCaptureImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
         mButtonUpdateTicket.setOnClickListener(new View.OnClickListener() {
@@ -180,20 +213,43 @@ public class UpdateTicketFragment extends Fragment {
         });
     }
 
+    public Bitmap getScreenShot(View view) {
+        View screenView = view.getRootView();
+        screenView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+        screenView.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    private String getStringFromImage(){
+        if( mImageViewCaptureImage.getDrawable()!=null) {
+            BitmapDrawable drawable = (BitmapDrawable) mImageViewCaptureImage.getDrawable();
+            Bitmap bitmap = drawable.getBitmap();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            byte[] imageBytes = baos.toByteArray();
+            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        }else {
+            return "";
+        }
+    }
+
     private void updateTicket() {
         Location mLocation = ((HomeActivity)mContext).getLocation();
         Map<String, String> updateFields = new HashMap<>();
         updateFields.put("UserId", userId);
         updateFields.put("TicketId", ticketId);
-        updateFields.put("Image", "");
         if (mRadioGroupDependency.getCheckedRadioButtonId() == R.id.radioButtonYes) {
             updateFields.put("DependencyId", dependencyResponse.getTblDependency().
                     get((int) mSpinnerDependency.getSelectedItemId()).getIntDependencyId());
             updateFields.put("ResolutionId", "");
+            updateFields.put("Image", "");
         } else {
             updateFields.put("DependencyId", "");
             updateFields.put("ResolutionId", resolutionResponse.getTblResolution().
                     get((int) mSpinnerResolution.getSelectedItemId()).getIntResolutionId());
+            String strImage=getStringFromImage();
+            updateFields.put("Image", strImage);
         }
         if(mLocation != null){
             updateFields.put("Latitude",mLocation.getLatitude()+"");
@@ -372,5 +428,15 @@ public class UpdateTicketFragment extends Fragment {
                 Utils.getInstance().showDialog((Activity) mContext, "Unable to login due to server error");
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode,resultCode,data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            mImageViewCaptureImage.setImageBitmap(imageBitmap);
+        }
     }
 }
