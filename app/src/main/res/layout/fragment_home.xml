@@ -25,20 +25,22 @@
             <TextView
                 android:id="@+id/text_todays_open_ticket_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
                 android:text="2"
-                android:textSize="40sp"
-                android:textColor="@color/colorWhite"/>
+                android:textSize="30sp"
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_todays_open_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
                 android:text="@string/txt_todays_open_ticket"
                 android:textSize="20sp"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -62,20 +64,22 @@
             <TextView
                 android:id="@+id/text_total_open_ticket_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:textSize="40sp"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
+                android:textSize="30sp"
                 android:text="2"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_total_open_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
                 android:textSize="20sp"
                 android:text="@string/txt_total_open_ticket"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -99,20 +103,22 @@
             <TextView
                 android:id="@+id/text_total_dependency_ticket_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:textSize="40sp"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
+                android:textSize="30sp"
                 android:text="2"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_total_dependency_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
                 android:textSize="20sp"
                 android:text="@string/txt_total_dependency_ticket"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
@@ -136,20 +142,22 @@
             <TextView
                 android:id="@+id/text_card_total_close_ticket_number"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:textSize="40sp"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
+                android:textSize="30sp"
                 android:text="2"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/text_card_total_close_ticket"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_height="0dp"
+                android:gravity="right|center_vertical"
                 android:textSize="20sp"
                 android:text="@string/txt_total_close_ticket"
-                android:textColor="@color/colorWhite"/>
+                android:textColor="@color/colorWhite"
+                android:layout_weight="1"/>
 
         </LinearLayout>
 
