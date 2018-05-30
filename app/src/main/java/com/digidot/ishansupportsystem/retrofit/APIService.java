@@ -4,6 +4,7 @@ import com.digidot.ishansupportsystem.model.BroadResponse;
 import com.digidot.ishansupportsystem.model.CityResponse;
 import com.digidot.ishansupportsystem.model.ClientResponse;
 import com.digidot.ishansupportsystem.model.DependencyResponse;
+import com.digidot.ishansupportsystem.model.DeshboardHomeResponse;
 import com.digidot.ishansupportsystem.model.EndPoint;
 import com.digidot.ishansupportsystem.model.FaultResponse;
 import com.digidot.ishansupportsystem.model.LoginResponse;
@@ -92,4 +93,8 @@ public interface APIService {
     @POST("UpdateTicket")
     @FormUrlEncoded
     Call<UpdateTicketResponce> getUpdateTicket(@FieldMap Map<String, String> updateTicketRequest);
+
+    @POST("DashboardCount")
+    @FormUrlEncoded
+    Call<DeshboardHomeResponse> getDashboardCount(@FieldMap Map<String, String> dashboardCountRequest);
 }

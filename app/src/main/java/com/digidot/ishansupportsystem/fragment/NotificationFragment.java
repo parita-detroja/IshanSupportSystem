@@ -64,8 +64,7 @@ public class NotificationFragment extends Fragment{
         pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID, "0");
         Log.e("User id", userId);
-        String notificationId = pref.getString(Constant.PREF_KEY_NOTIFICATION_ID, "0");
-        Log.e("User id", notificationId);
+        String notificationId = pref.getString(Constant.PREF_KEY_NOTIFICATION_ID_LIST, "0");
         recyclerView = (RecyclerView)view.findViewById(R.id.rvNotificationTickets);
         btnRefresh= view.findViewById(R.id.btnRefresh);
         recyclerView.setHasFixedSize(true);
@@ -90,7 +89,7 @@ public class NotificationFragment extends Fragment{
 
     private void refreshNotificationData(){
         refreshFlag=true;
-        getNotifications(pref.getString(Constant.PREF_KEY_NOTIFICATION_ID,"0"));
+        getNotifications(pref.getString(Constant.PREF_KEY_NOTIFICATION_ID_LIST,"0"));
 
     }
 
@@ -123,7 +122,7 @@ public class NotificationFragment extends Fragment{
                         }
                         if(notificationResponse.getTblNotifications().size()>0){
                             Notification notification=notificationResponse.getTblNotifications().get(notificationResponse.getTblNotifications().size()-1);
-                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID,notification.getIntNotificationId()).commit();
+                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID,notification.getIntNotificationId()).apply();
                         }
                      }else{
                         Toast.makeText(mContext,"Empty data",Toast.LENGTH_LONG).show();
