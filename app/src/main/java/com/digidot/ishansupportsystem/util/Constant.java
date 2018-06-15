@@ -8,6 +8,7 @@ package com.digidot.ishansupportsystem.util;
 public class Constant {
 
     public static final String PREF_KEY_NOTIFICATION_ID = "notificationId";
+    public static final String PREF_KEY_NOTIFICATION_ID_LIST = "notificationIdList";
     public static String FRAGMNET_HOME = "Home";
     public static String FRAGMNET_NOTIFICATIONS = "Notifications";
     public static String FRAGMNET_TICKET_LIST = "TicketList";

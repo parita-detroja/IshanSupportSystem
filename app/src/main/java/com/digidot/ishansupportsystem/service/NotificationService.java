@@ -110,7 +110,8 @@ public class NotificationService extends Service {
                                 //sendNotification(notification);
                                 Log.i(TAG,"App is not running");
                             }
-                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID,notification.getIntNotificationId()).commit();
+                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID_LIST,pref.getString(Constant.PREF_KEY_NOTIFICATION_ID,"0")).apply();
+                            pref.edit().putString(Constant.PREF_KEY_NOTIFICATION_ID,notification.getIntNotificationId()).apply();
                         }
                     }else{
                         Log.e(TAG, "null body");
