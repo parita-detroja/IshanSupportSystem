@@ -1,6 +1,7 @@
 package com.digidot.ishansupportsystem.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.model.Ticket;
+import com.digidot.ishansupportsystem.util.Constant;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,12 +27,14 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Ticket>> childList;
     private Context mContext;
+    private SharedPreferences pref;
 
     public TicketHistoryAdapter(Context mContext, ArrayList<String> headerList, HashMap<String, ArrayList<Ticket>> childList) {
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.headerList = headerList;
         this.childList = childList;
         this.mContext=mContext;
+        pref=mContext.getSharedPreferences("IffcoPref",0);
     }
 
     @Override
@@ -121,7 +125,8 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
             if(ticket.getStrImage()!=null && ticket.getStrImage().equals("")){
                 viewHolderChild.mImageViewCaptureImage.setVisibility(View.VISIBLE);
                 viewHolderChild.mTextviewNoimage.setVisibility(View.GONE);
-                Picasso.with(mContext).load(ticket.getStrImage()).into(viewHolderChild.mImageViewCaptureImage);
+                String temp=pref.getString(Constant.PREF_KEY_WEBSITE_LINK,"");
+                Picasso.with(mContext).load(temp+ticket.getStrImage()).into(viewHolderChild.mImageViewCaptureImage);
             }else{
                 viewHolderChild.mImageViewCaptureImage.setVisibility(View.GONE);
                 viewHolderChild.mTextviewNoimage.setVisibility(View.VISIBLE);
