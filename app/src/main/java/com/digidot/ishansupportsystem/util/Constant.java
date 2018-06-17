@@ -46,6 +46,8 @@ public class Constant {
     public static final String INTENT_PARAM_TICKET_FAULT="ticketFault";
     public static final String INTENT_PARAM_TICKET_DESCRIPTION="ticketDescription";
     public static final String INTENT_PARAM_TICKET_STATUS="ticketStatus";
+    public static final String INTENT_PARAM_TICKET_CLIENT_NAME="ticketClientName";
+    public static final String INTENT_PARAM_TICKET_OFFICE_NAME="ticketOfficeName";
     public static final String INTENT_PARAM_TICKET_DEPENDENCY_CODE="dependencyCode";
     public static final String INTENT_PARAM_TICKET_DEPENDENCY="dependency";
     public static final String INTENT_PARAM_TICKET_RESOLUTION_CODE="resolutionCode";

@@ -39,10 +39,10 @@ public class ViewTicketFragment extends Fragment {
 
     private String userId = "0";
     private String ticketId, ticketNo = "", fault = "",
-            date = "", description = "",ticketStatus;
+            date = "", description = "",ticketStatus,officeName="",clientName="";
     private APIService mApiService;
     private SharedPreferences pref;
-    private TextView mTextviewTicketNoValue, mTextviewDateValue,
+    private TextView mTextviewTicketNoValue, mTextviewDateValue,mTextviewOfficeValue,mTextviewClientValue,
             mTextViewFaultValue, mTextviewDescriptionValue, mTextViewNoData ;
     private ImageView mImageView;
     private Ticket mTicket;
@@ -75,10 +75,14 @@ public class ViewTicketFragment extends Fragment {
         date = bundle.getString(Constant.INTENT_PARAM_TICKET_DATE);
         description = bundle.getString(Constant.INTENT_PARAM_TICKET_DESCRIPTION);
         ticketStatus = bundle.getString(Constant.INTENT_PARAM_TICKET_STATUS);
+        clientName = bundle.getString(Constant.INTENT_PARAM_TICKET_CLIENT_NAME);
+        officeName = bundle.getString(Constant.INTENT_PARAM_TICKET_OFFICE_NAME);
         mTextviewTicketNoValue.setText(ticketNo);
         mTextviewDateValue.setText(date);
         mTextViewFaultValue.setText(fault);
         mTextviewDescriptionValue.setText(description);
+        mTextviewClientValue.setText(clientName);
+        mTextviewOfficeValue.setText(officeName);
         if (ticketStatus.equals(Constant.TICKET_STATUS_CLOSE)) {
             mImageView.setVisibility(View.GONE);
         }
@@ -136,6 +140,8 @@ public class ViewTicketFragment extends Fragment {
         mTextviewDescriptionValue = view.findViewById(R.id.textviewDescriptionValue);
         mTextViewNoData = view.findViewById(R.id.textviewNoData);
         mExpandableListView = view.findViewById(R.id.expandable_history_data);
+        mTextviewOfficeValue = view.findViewById(R.id.textviewOfficeValue);
+        mTextviewClientValue = view.findViewById(R.id.textviewClientValue);
         String isUpdateRight=pref.getString(Constant.PREF_KEY_IS_UPDATE_TICKET_RIGHT,"False");
         if(isUpdateRight.equals("True")){
             mImageView.setVisibility(View.VISIBLE);

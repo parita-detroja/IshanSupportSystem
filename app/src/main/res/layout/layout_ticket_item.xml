@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/dim_2dp"
-    android:padding="@dimen/dim_5dp">
+    android:padding="@dimen/dim_2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dim_10dp">
+        android:padding="@dimen/dim_2dp">
 
         <ImageView
             android:id="@+id/icon_ticket"
@@ -20,26 +20,47 @@
 
         <LinearLayout
             android:id="@+id/linear_layout_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_toRightOf="@id/icon_ticket"
             android:padding="@dimen/dim_5dp">
 
-            <TextView
-                android:id="@+id/textViewTicketNo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/text_regular_white"
-                android:textStyle="bold"
-                android:text="Alert"
-                android:textColor="@color/colorPrimaryDark"
-                android:padding="@dimen/dim_10dp"/>
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dim_5dp">
+
+
+                <TextView
+                        android:id="@+id/textViewTicketNo"
+                        style="@style/text_regular_white"
+                        android:textStyle="bold"
+                        android:text="Alert"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:padding="@dimen/dim_10dp"/>
+
+                    <TextView
+                        android:id="@+id/textviewClientValue"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:textStyle="bold"
+                        android:text="office"
+                        android:paddingLeft="@dimen/dim_10dp"/>
+
+                    <TextView
+                        android:id="@+id/textviewOfficeValue"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:textStyle="bold"
+                        android:text="office"
+                        android:paddingLeft="@dimen/dim_10dp"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/textViewFault"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 style="@style/text_regular_white"
                 android:textStyle="bold"
                 android:text="Alert"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_margin="@dimen/dim_5dp"
     android:layout_height="match_parent"
-    android:background="@color/colorLightGray">
+    android:background="@color/colorLightBlue">
 
     <Spinner
         android:paddingTop="@dimen/dim_5dp"
@@ -13,11 +13,9 @@
         android:id="@+id/spinnerTicketStatus"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/dim_10dp"
-        android:layout_marginBottom="@dimen/dim_10dp"
+        android:layout_margin="@dimen/dim_10dp"
         style="@style/text_large_black"
-        android:background="@drawable/shape"
-        android:padding="@dimen/dim_10dp"/>
+        android:background="@drawable/shape"/>
 
     <LinearLayout
         android:layout_width="match_parent"

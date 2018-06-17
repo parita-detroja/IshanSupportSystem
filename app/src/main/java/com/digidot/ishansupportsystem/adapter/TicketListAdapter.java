@@ -41,6 +41,8 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
         viewHolder.mTextViewTicketNo.setText(ticketList.get(i).getStrTicketNo());
         viewHolder.mTextViewFault.setText(ticketList.get(i).getStrFault());
         viewHolder.mTextViewDate.setText(ticketList.get(i).getStrTicketDate());
+        viewHolder.mTextviewOfficeValue.setText(ticketList.get(i).getStrOfficeName());
+        viewHolder.mTextviewClientValue.setText(ticketList.get(i).getStrFullName());
     }
 
     @Override
@@ -52,12 +54,16 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
         private TextView mTextViewTicketNo;
         private TextView mTextViewFault;
         private TextView mTextViewDate;
+        private TextView mTextviewOfficeValue;
+        private TextView mTextviewClientValue;
 
         public ViewHolder(View view) {
             super(view);
             mTextViewTicketNo = view.findViewById(R.id.textViewTicketNo);
             mTextViewFault = view.findViewById(R.id.textViewFault);
             mTextViewDate = view.findViewById(R.id.textViewDate);
+            mTextviewClientValue=view.findViewById(R.id.textviewClientValue);
+            mTextviewOfficeValue=view.findViewById(R.id.textviewOfficeValue);
 
             view.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -72,6 +78,8 @@ public class TicketListAdapter extends RecyclerView.Adapter<TicketListAdapter.Vi
                     bundle.putString(Constant.INTENT_PARAM_TICKET_FAULT,ticketList.get(itemPosition).getStrFault());
                     bundle.putString(Constant.INTENT_PARAM_TICKET_DESCRIPTION,ticketList.get(itemPosition).getStrDescription());
                     bundle.putString(Constant.INTENT_PARAM_TICKET_STATUS,ticketList.get(itemPosition).getStrTicketStatus());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_CLIENT_NAME,ticketList.get(itemPosition).getStrFullName());
+                    bundle.putString(Constant.INTENT_PARAM_TICKET_OFFICE_NAME,ticketList.get(itemPosition).getStrOfficeName());
                     mViewTicketFragment.setArguments(bundle);
                     fragmentManager.beginTransaction()
                             .replace(R.id.frame, mViewTicketFragment)

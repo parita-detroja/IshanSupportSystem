@@ -24,6 +24,8 @@
     <string name="ticket_description">Description : </string>
     <string name="fault">Fault : </string>
     <string name="ticket_date">Date : </string>
+    <string name="ticket_client">Client : </string>
+    <string name="ticket_office">Office : </string>
     <string name="ticketNo">Ticket No : </string>
     <string name="ticket_status_details">Status Details : </string>
     <string name="ticket_no_data">No data</string>

@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class TicketHistoryAdapter extends BaseExpandableListAdapter {
 
@@ -122,11 +123,12 @@ public class TicketHistoryAdapter extends BaseExpandableListAdapter {
             viewHolderChild.mLinearLayoutCaptureImage.setVisibility(View.VISIBLE);
             viewHolderChild.mTextviewResolutionCodeValue.setText(ticket.getStrResolutionCode());
             viewHolderChild.mTextviewBroadCategoryValue.setText(ticket.getStrBroadCategory());
-            if(ticket.getStrImage()!=null && ticket.getStrImage().equals("")){
+            if(ticket.getStrImage()!=null && !ticket.getStrImage().equals("")){
                 viewHolderChild.mImageViewCaptureImage.setVisibility(View.VISIBLE);
                 viewHolderChild.mTextviewNoimage.setVisibility(View.GONE);
-                String temp=pref.getString(Constant.PREF_KEY_WEBSITE_LINK,"");
-                Picasso.with(mContext).load(temp+ticket.getStrImage()).into(viewHolderChild.mImageViewCaptureImage);
+                String imageUrl=pref.getString(Constant.PREF_KEY_WEBSITE_LINK,"")+ticket.getStrImage();
+                System.err.println("image url = "+imageUrl);
+                Picasso.with(mContext).load(imageUrl).into(viewHolderChild.mImageViewCaptureImage);
             }else{
                 viewHolderChild.mImageViewCaptureImage.setVisibility(View.GONE);
                 viewHolderChild.mTextviewNoimage.setVisibility(View.VISIBLE);
