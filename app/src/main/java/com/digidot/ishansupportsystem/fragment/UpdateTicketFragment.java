@@ -75,6 +75,7 @@ public class UpdateTicketFragment extends Fragment {
 
     private RadioButton mRadioButtonYes;
     private RadioButton mRadioButtonNo;
+    String encodedString="";
 
     private APIService mApiService;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -213,27 +214,6 @@ public class UpdateTicketFragment extends Fragment {
         });
     }
 
-    public Bitmap getScreenShot(View view) {
-        View screenView = view.getRootView();
-        screenView.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
-        screenView.setDrawingCacheEnabled(false);
-        return bitmap;
-    }
-
-    private String getStringFromImage(){
-        if( mImageViewCaptureImage.getDrawable()!=null) {
-            BitmapDrawable drawable = (BitmapDrawable) mImageViewCaptureImage.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
-            return Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        }else {
-            return "";
-        }
-    }
-
     private void updateTicket() {
         Location mLocation = ((HomeActivity)mContext).getLocation();
         Map<String, String> updateFields = new HashMap<>();
@@ -248,8 +228,8 @@ public class UpdateTicketFragment extends Fragment {
             updateFields.put("DependencyId", "");
             updateFields.put("ResolutionId", resolutionResponse.getTblResolution().
                     get((int) mSpinnerResolution.getSelectedItemId()).getIntResolutionId());
-            String strImage=getStringFromImage();
-            updateFields.put("Image", strImage);
+            updateFields.put("Image", encodedString);
+            encodedString="";
         }
         if(mLocation != null){
             updateFields.put("Latitude",mLocation.getLatitude()+"");
@@ -436,6 +416,10 @@ public class UpdateTicketFragment extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] byteArray = byteArrayOutputStream .toByteArray();
+            encodedString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             mImageViewCaptureImage.setImageBitmap(imageBitmap);
         }
     }

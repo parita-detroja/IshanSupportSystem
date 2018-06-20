@@ -63,4 +63,9 @@ public class NotificationCustomAdapter extends RecyclerView.Adapter<Notification
         this.notifyDataSetChanged();
     }
 
+    public void clearListData(){
+        notificationList.clear();
+        this.notifyDataSetChanged();
+    }
+
 }

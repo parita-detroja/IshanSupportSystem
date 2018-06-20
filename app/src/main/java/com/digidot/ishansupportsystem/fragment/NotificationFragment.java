@@ -45,6 +45,7 @@ public class NotificationFragment extends Fragment{
     private String userId = "0";
     private SharedPreferences pref;
     private APIService mApiService;
+    //private Button btnRefresh,btnClear;
     private ImageView btnRefresh;
     boolean refreshFlag=false;
 
@@ -64,9 +65,12 @@ public class NotificationFragment extends Fragment{
         pref = mContext.getSharedPreferences("IffcoPref", 0);
         userId = pref.getString(Constant.PREF_KEY_USER_ID, "0");
         Log.e("User id", userId);
+        //String notificationId = pref.getString(Constant.PREF_KEY_CLEAR_NOTIFICATION_ID, "0");
         String notificationId = pref.getString(Constant.PREF_KEY_NOTIFICATION_ID_LIST, "0");
+        Log.e("notification id", notificationId);
         recyclerView = (RecyclerView)view.findViewById(R.id.rvNotificationTickets);
         btnRefresh= view.findViewById(R.id.btnRefresh);
+        //btnClear= view.findViewById(R.id.btnClear);
         recyclerView.setHasFixedSize(true);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(),1);
@@ -77,6 +81,12 @@ public class NotificationFragment extends Fragment{
                 refreshNotificationData();
             }
         });
+        /*btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearNotificationData();
+            }
+        });*/
         getNotifications(notificationId);
         return view;
     }
@@ -87,10 +97,17 @@ public class NotificationFragment extends Fragment{
         mContext = context;
     }
 
+    private void clearNotificationData(){
+        /*String id=pref.getString(Constant.PREF_KEY_NOTIFICATION_ID,"0");
+        pref.edit().putString(Constant.PREF_KEY_CLEAR_NOTIFICATION_ID,id).commit();
+        NotificationCustomAdapter notificationCustomAdapter =(NotificationCustomAdapter) recyclerView.getAdapter();
+        notificationCustomAdapter.clearListData();*/
+    }
+
     private void refreshNotificationData(){
         refreshFlag=true;
+        //getNotifications(pref.getString(Constant.PREF_KEY_CLEAR_NOTIFICATION_ID,"0"));
         getNotifications(pref.getString(Constant.PREF_KEY_NOTIFICATION_ID_LIST,"0"));
-
     }
 
     @Override

@@ -6,6 +6,31 @@
     android:orientation="vertical"
     android:background="@color/colorLightBlue">
 
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dim_5dp">
+
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dim_5dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/btn_clear" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_weight="1"
+            android:layout_margin="@dimen/dim_5dp"
+            android:background="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_refresh" />
+
+    </LinearLayout>-->
+
     <ImageView android:id="@+id/btnRefresh"
         android:layout_width="35dp"
         android:layout_height="35dp"

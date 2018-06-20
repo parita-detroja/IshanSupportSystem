@@ -18,7 +18,8 @@
         <TextView
             android:id="@+id/textviewStatusDate"
             style="@style/text_regular_black"
-            android:text="@string/ticket_date" />
+            android:text="@string/ticket_date"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textviewStatusDateValue"
@@ -37,7 +38,8 @@
         <TextView
             android:id="@+id/textviewTicketRemarks"
             style="@style/text_regular_black"
-            android:text="@string/ticket_remarks" />
+            android:text="@string/ticket_remarks"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textviewTicketRemarksValue"
