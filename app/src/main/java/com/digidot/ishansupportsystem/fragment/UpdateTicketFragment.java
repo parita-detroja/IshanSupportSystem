@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -30,6 +31,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.digidot.ishansupportsystem.BuildConfig;
 import com.digidot.ishansupportsystem.R;
 import com.digidot.ishansupportsystem.activity.HomeActivity;
 import com.digidot.ishansupportsystem.model.Broad;
@@ -46,7 +48,11 @@ import com.digidot.ishansupportsystem.util.Constant;
 import com.digidot.ishansupportsystem.util.Utils;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +84,6 @@ public class UpdateTicketFragment extends Fragment {
     String encodedString="";
 
     private APIService mApiService;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private String userId = "";
     private String ticketId = "";
@@ -92,6 +97,8 @@ public class UpdateTicketFragment extends Fragment {
     private DependencyResponse dependencyResponse;
     private ResolutionResponse resolutionResponse;
     private BroadResponse broadResponse;
+
+    String mCurrentPhotoPath;
 
     public UpdateTicketFragment() {
         // Required empty public constructor
@@ -190,8 +197,7 @@ public class UpdateTicketFragment extends Fragment {
         mBtnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                    captureImage();
             }
         });
         mButtonUpdateTicket.setOnClickListener(new View.OnClickListener() {
@@ -410,7 +416,7 @@ public class UpdateTicketFragment extends Fragment {
         });
     }
 
-    @Override
+    /*@Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode,resultCode,data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
@@ -422,5 +428,92 @@ public class UpdateTicketFragment extends Fragment {
             encodedString = Base64.encodeToString(byteArray, Base64.DEFAULT);
             mImageViewCaptureImage.setImageBitmap(imageBitmap);
         }
+    }*/
+
+    private void getBase64String() {
+        Bitmap bm = BitmapFactory.decodeFile(mCurrentPhotoPath);
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 50, bao);
+        byte[] ba = bao.toByteArray();
+        encodedString = Base64.encodeToString(ba, Base64.DEFAULT);
+
     }
+
+    private void captureImage() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        FileProvider.getUriForFile(getActivity().getApplicationContext(),
+                                BuildConfig.APPLICATION_ID + ".provider",
+                                photoFile));
+                startActivityForResult(takePictureIntent, 100);
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            setPic();
+        }
+    }
+
+    private void setPic() {
+
+        // Get the dimensions of the View
+        int targetW = mImageViewCaptureImage.getWidth();
+        int targetH = mImageViewCaptureImage.getHeight();
+
+        // Get the dimensions of the bitmap
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+
+        // Determine how much to scale down the image
+        int scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+        mImageViewCaptureImage.setImageBitmap(bitmap);
+
+        getBase64String();
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        Log.e("Getpath", "Cool" + mCurrentPhotoPath);
+        return image;
+    }
+
 }
+
